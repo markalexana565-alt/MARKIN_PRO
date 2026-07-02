@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>Андрей Маркин — МаркинPRO</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+img{display:block;background:#ccc}
+.ticker-wrap{overflow:hidden;white-space:nowrap}
+/* Единый стиль кнопок */
+.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid #000;padding:0 1.5rem;height:40px;font-size:.875rem;gap:6px;text-decoration:none;color:inherit;white-space:nowrap}
+</style>
+</head>
+<body class="bg-white text-black font-sans">
+
+<!-- SVG-спрайт: иконка Telegram -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <symbol id="tg" viewBox="0 0 24 24">
+      <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ═══════════════════════════════════════════════════
+     1. НАВИГАЦИЯ
+════════════════════════════════════════════════════ -->
+<header class="w-full border-b border-black">
+  <div class="max-w-screen-xl mx-auto px-8 h-16 flex items-center justify-between">
+    <div class="font-bold text-lg tracking-widest">МаркинPRO</div>
+    <nav class="flex gap-8 text-sm">
+      <a href="#portfolio" class="underline">Портфолио</a>
+      <a href="#light" class="underline">Свет &amp; Звук</a>
+      <a href="#fx" class="underline">Спецэффекты</a>
+    </nav>
+    <a href="https://t.me/" class="btn" aria-label="Написать в Telegram">
+      <svg width="18" height="18" fill="currentColor"><use href="#tg"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════
+     2. HERO — фото на весь экран
+════════════════════════════════════════════════════ -->
+<section class="relative" style="height:100vh">
+  <img src="" alt="Главное фото ведущего Андрея Маркина — полноэкранный hero-баннер, вертикальный портрет на тёмном фоне" class="absolute inset-0 w-full h-full object-cover">
+  <div class="relative z-10 max-w-screen-xl mx-auto px-8 h-full flex flex-col justify-end pb-16">
+    <div class="max-w-2xl">
+      <h1 class="text-4xl font-bold leading-tight uppercase mb-5">АНДРЕЙ МАРКИН — ВЕДУЩИЙ НА СВАДЬБУ, КОРПОРАТИВ И ПРЕМИУМ СОБЫТИЯ</h1>
+      <p class="text-base mb-8">Профессиональная режиссура, интеллигентный юмор и технологичный продакшн мероприятий под ключ.</p>
+      <div class="flex gap-4">
+        <a href="#contact" class="btn">ОБСУДИТЬ ВАШЕ СОБЫТИЕ</a>
+        <a href="https://t.me/" class="btn" aria-label="Написать в Telegram">
+          <svg width="18" height="18" fill="currentColor"><use href="#tg"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     3. БЕГУЩАЯ СТРОКА
+════════════════════════════════════════════════════ -->
+<div class="w-full border-t border-b border-black py-3 ticker-wrap">
+  <div class="ticker-inner text-sm tracking-widest uppercase">
+    СВАДЬБЫ&nbsp;•&nbsp;ЮБИЛЕИ&nbsp;•&nbsp;КОРПОРАТИВЫ&nbsp;•&nbsp;ДНИ РОЖДЕНИЯ&nbsp;•&nbsp;ПРЕМИУМ СОБЫТИЯ&nbsp;•&nbsp;РЕЖИССУРА&nbsp;•&nbsp;&nbsp;
+    СВАДЬБЫ&nbsp;•&nbsp;ЮБИЛЕИ&nbsp;•&nbsp;КОРПОРАТИВЫ&nbsp;•&nbsp;ДНИ РОЖДЕНИЯ&nbsp;•&nbsp;ПРЕМИУМ СОБЫТИЯ&nbsp;•&nbsp;РЕЖИССУРА&nbsp;•&nbsp;&nbsp;
+    СВАДЬБЫ&nbsp;•&nbsp;ЮБИЛЕИ&nbsp;•&nbsp;КОРПОРАТИВЫ&nbsp;•&nbsp;ДНИ РОЖДЕНИЯ&nbsp;•&nbsp;ПРЕМИУМ СОБЫТИЯ&nbsp;•&nbsp;РЕЖИССУРА&nbsp;•
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     4. ОБО МНЕ — левая колонка = фото
+════════════════════════════════════════════════════ -->
+<section class="max-w-screen-xl mx-auto px-8 py-16 border-t border-black">
+  <div class="grid grid-cols-2 gap-16 items-start">
+    <img src="" alt="Портрет ведущего Андрея Маркина — блок 'О себе', вертикальный кадр" width="600" height="700">
+    <div class="flex flex-col gap-5">
+      <h2 class="text-3xl font-bold">Стильный ведущий и вокалист для событий, которые хочется вспоминать.</h2>
+      <p class="text-sm leading-relaxed">За 7 лет я провёл более 600 мероприятий для 50&nbsp;000 гостей по всему Крыму и России. Мне доверяют как частные торжества, так и масштабные проекты: среди моих клиентов Правительство Севастополя, банк ВТБ и театр им.&nbsp;Елизарова.</p>
+      <p class="text-sm leading-relaxed">Мой стиль — это живой вокал, тонкая импровизация и деликатная интеллигентность. Я не просто развлекаю аудиторию, а создаю atmosphere, в которой каждому гостю легко, уютно и интересно.</p>
+      <p class="text-sm leading-relaxed">Выдыхайте. Если вы читаете этот текст, значит, ваш праздник уже в надёжных руках.</p>
+      <div class="flex gap-4 mt-2">
+        <a href="#" class="btn">СМОТРЕТЬ ПРЕЗЕНТАЦИЮ</a>
+        <a href="#contact" class="btn">НАПИСАТЬ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     5. УСЛУГИ
+════════════════════════════════════════════════════ -->
+<section class="max-w-screen-xl mx-auto px-8 py-16 border-t border-black">
+  <h2 class="text-3xl font-bold mb-10">Услуги</h2>
+  <div class="grid grid-cols-3 gap-8">
+    <div class="border border-black p-6 flex flex-col gap-4">
+      <h3 class="font-bold text-lg">СВАДЬБЫ</h3>
+      <p class="text-sm leading-relaxed">Элегантный европейский формат без пошлых конкурсов и навязчивых традиций. Тонкий психологизм, индивидуальный сценарий, построенный на истории пары, и безупречный такт. Атмосфера, где комфортно и молодежи, и старшему поколению.</p>
+      <a href="https://t.me/" class="btn mt-auto">ОБСУДИТЬ
+        <svg width="16" height="16" fill="currentColor"><use href="#tg"/></svg>
+      </a>
+    </div>
+    <div class="border border-black p-6 flex flex-col gap-4">
+      <h3 class="font-bold text-lg">КОРПОРАТИВЫ</h3>
+      <p class="text-sm leading-relaxed">Масштабные концептуальные события для брендов и компаний. Интеграция ценностей компании в развлекательный контент, современные цифровые интерактивы, работа с залами от 50 до 1000+ человек и мощный объединяющий финал.</p>
+      <a href="https://t.me/" class="btn mt-auto">ОБСУДИТЬ
+        <svg width="16" height="16" fill="currentColor"><use href="#tg"/></svg>
+      </a>
+    </div>
+    <div class="border border-black p-6 flex flex-col gap-4">
+      <h3 class="font-bold text-lg">ЧАСТНЫЕ СОБЫТИЯ</h3>
+      <p class="text-sm leading-relaxed">Камерные юбилеи, дни рождения и закрытые вечеринки. Формат intelligent luxury: атмосфера закрытого клуба, где каждый гость окружен вниманием, а виновник торжества — главный герой кинематографичного вечера.</p>
+      <a href="https://t.me/" class="btn mt-auto">ОБСУДИТЬ
+        <svg width="16" height="16" fill="currentColor"><use href="#tg"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     6. СВЕТ
+════════════════════════════════════════════════════ -->
+<section id="light" class="max-w-screen-xl mx-auto px-8 py-16 border-t border-black">
+  <div class="grid grid-cols-2 gap-16 items-center">
+    <div>
+      <h2 class="text-3xl font-bold mb-6">Световое оформление мероприятий премиум-класса</h2>
+      <p class="text-sm leading-relaxed mb-8">Половина эмоций от шоу и идеальная картинка на фото и видео зависят от правильного света. Мы не используем дешевые китайские «мигалки» — у нас собственный комплект управляемого оборудования (головы BEAM и WASH, блайндеры, генератор тумана) и светоинженера, который создает световую режиссуру в такт музыке.</p>
+      <a href="#equipment" class="btn">ПОДРОБНЕЕ ПРО СВЕТ</a>
+    </div>
+    <img src="" alt="Световое шоу на мероприятии — приборы BEAM и WASH в действии" width="600" height="400">
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     7. СПЕЦЭФФЕКТЫ
+════════════════════════════════════════════════════ -->
+<section id="fx" class="max-w-screen-xl mx-auto px-8 py-16 border-t border-black">
+  <div class="grid grid-cols-2 gap-16 items-center">
+    <img src="" alt="Спецэффекты на мероприятии — холодные искры спаркуляры и тяжёлый дым" width="600" height="400">
+    <div>
+      <h2 class="text-3xl font-bold mb-6">Эффекты для кульминационных моментов шоу</h2>
+      <p class="text-sm leading-relaxed mb-4">Мы закрываем все страхи площадок и невест. Наше оборудование сертифицировано, безопасно и разрешено к использованию в любых ресторанах.</p>
+      <ul class="text-sm mb-8 flex flex-col gap-1">
+        <li class="border-b border-black py-1">— Тяжёлый дым (на сухом льду)</li>
+        <li class="border-b border-black py-1">— Холодные искры (Спаркуляры)</li>
+        <li class="border-b border-black py-1">— Крио-пушки (CO2)</li>
+        <li class="border-b border-black py-1">— Пирамида шампанского</li>
+      </ul>
+      <a href="#equipment" class="btn">ПОДРОБНЕЕ ПРО СПЕЦЭФФЕКТЫ</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     8. УТП
+════════════════════════════════════════════════════ -->
+<section class="max-w-screen-xl mx-auto px-8 py-16 border-t border-black">
+  <h2 class="text-3xl font-bold mb-10">Современный подход к созданию событий</h2>
+  <div class="grid grid-cols-3 gap-8 mb-10">
+    <div class="border border-black p-6">
+      <div class="text-xs mb-2">01</div>
+      <h3 class="font-bold mb-3">Контроль атмосферы</h3>
+      <p class="text-sm leading-relaxed">Мы объединяем программу, свет, звук и спецэффекты в один поминутный сценарий. На площадке нет места случайным паузам, заминкам или устаревшим конкурсам.</p>
+    </div>
+    <div class="border border-black p-6">
+      <div class="text-xs mb-2">02</div>
+      <h3 class="font-bold mb-3">Авторские интерактивы</h3>
+      <p class="text-sm leading-relaxed">Интеллектуальные шоу вместо банальных развлечений. Мы используем собственную беспроводную систему с кнопками «Брейндринг» — весь игровой контент создается индивидуально под вашу компанию.</p>
+    </div>
+    <div class="border border-black p-6">
+      <div class="text-xs mb-2">03</div>
+      <h3 class="font-bold mb-3">Безупречный такт</h3>
+      <p class="text-sm leading-relaxed">Тонкое чувство юмора, знание психологии гостей и умение управлять настроением зала. Формат, который подчеркивает статус вашего мероприятия и гарантирует комфорт каждому гостю.</p>
+    </div>
+  </div>
+  <a href="#contact" class="btn">НАПИСАТЬ НАМ</a>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     9. ПОРТФОЛИО
+════════════════════════════════════════════════════ -->
+<section id="portfolio" class="max-w-screen-xl mx-auto px-8 py-16 border-t border-black">
+  <h2 class="text-3xl font-bold mb-10">Живые эмоции и эстетика реализованных проектов</h2>
+  <div class="mb-10">
+    <h3 class="font-bold text-sm uppercase mb-4 border-b border-black pb-2">Видео — Бэкстейджи со свадеб и драйв с корпоративов</h3>
+    <div class="grid grid-cols-3 gap-6">
+      <img src="" alt="Видео-плейсхолдер 1 — бэкстейдж свадебного мероприятия" width="420" height="236">
+      <img src="" alt="Видео-плейсхолдер 2 — запись корпоратива" width="420" height="236">
+      <img src="" alt="Видео-плейсхолдер 3 — шоу-программа" width="420" height="236">
+    </div>
+  </div>
+  <div class="mb-10">
+    <h3 class="font-bold text-sm uppercase mb-4 border-b border-black pb-2">Фото — Репортажные кадры, эмоции гостей, детали декора</h3>
+    <div class="grid grid-cols-4 gap-6">
+      <img src="" alt="Репортажное фото 1 — эмоции гостей" width="300" height="300">
+      <img src="" alt="Репортажное фото 2 — детали декора свадьбы" width="300" height="300">
+      <img src="" alt="Репортажное фото 3 — ведущий на сцене" width="300" height="300">
+      <img src="" alt="Репортажное фото 4 — свадебная церемония" width="300" height="300">
+    </div>
+  </div>
+  <a href="#" class="btn">СМОТРЕТЬ ВСЕ КЕЙСЫ</a>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     10. СТОИМОСТЬ — МЕРОПРИЯТИЯ
+════════════════════════════════════════════════════ -->
+<section class="max-w-screen-xl mx-auto px-8 py-16 border-t border-black">
+  <h2 class="text-3xl font-bold mb-10">Стоимость проведения мероприятия</h2>
+  <div class="grid grid-cols-3 gap-8">
+
+    <div class="border border-black p-6 flex flex-col gap-4">
+      <h3 class="font-bold text-lg border-b border-black pb-3">Свадьба (церемония + банкет)</h3>
+      <p class="text-sm leading-relaxed">Если вы хотите, чтобы все события на вашем мероприятии протекали плавно без лишней суеты – это идеальное решение! Пошаговая разработка сценария церемонии и банкета: написание вашей истории любви, подбор музыкального оформления, выбор наполнения церемонии, широкий выбор форматов проведения свадебных традиций, услуги ведущего и ди-диджея.</p>
+      <ul class="text-xs flex flex-col gap-1">
+        <li class="border-b border-black py-1">— Количество встреч ∞</li>
+        <li class="border-b border-black py-1">— Подбор артистов и оригинальных сюрпризов</li>
+        <li class="border-b border-black py-1">— Персонализированная игра «правда или ложь»</li>
+        <li class="border-b border-black py-1">— Интерактивы с использованием ИИ</li>
+        <li class="border-b border-black py-1">— Чат для подготовки к празднику</li>
+        <li class="border-b border-black py-1">— Камера Instax mini 12 (картриджи отдельно)</li>
+        <li class="border-b border-black py-1">— Заключение договора на оказание услуг</li>
+        <li class="border-b border-black py-1">— Длительность до 7 часов</li>
+      </ul>
+      <div class="font-bold text-lg">95 000 ₽ <span class="font-normal text-sm">(ведущий и диджей)</span></div>
+      <p class="text-xs">Стоимость проката оборудования определяется индивидуально.</p>
+      <a href="#contact" class="btn mt-auto">НАПИСАТЬ НАМ</a>
+    </div>
+
+    <div class="border border-black p-6 flex flex-col gap-4">
+      <h3 class="font-bold text-lg border-b border-black pb-3">Свадебный банкет</h3>
+      <p class="text-sm leading-relaxed">Это не просто ужин и танцы! Написание сценария, разработка уникальной программы интерактивов, широкий выбор форматов проведения свадебных традиций, услуги ведущего и ди-иджея.</p>
+      <ul class="text-xs flex flex-col gap-1">
+        <li class="border-b border-black py-1">— Количество встреч ∞</li>
+        <li class="border-b border-black py-1">— Подбор артистов и оригинальных сюрпризов</li>
+        <li class="border-b border-black py-1">— Персонализированная игра «правда или ложь»</li>
+        <li class="border-b border-black py-1">— Интерактивы с использованием ИИ</li>
+        <li class="border-b border-black py-1">— Чат для подготовки к празднику</li>
+        <li class="border-b border-black py-1">— Камера Instax mini 12 (картриджи отдельно)</li>
+        <li class="border-b border-black py-1">— Профессиональная караоке система</li>
+        <li class="border-b border-black py-1">— Заключение договора на оказание услуг</li>
+        <li class="border-b border-black py-1">— Длительность до 6 часов</li>
+      </ul>
+      <div class="font-bold text-lg">85 000 ₽ <span class="font-normal text-sm">(ведущий и диджей)</span></div>
+      <p class="text-xs">Стоимость проката оборудования определяется индивидуально.</p>
+      <a href="#contact" class="btn mt-auto">НАПИСАТЬ НАМ</a>
+    </div>
+
+    <div class="border border-black p-6 flex flex-col gap-4">
+      <h3 class="font-bold text-lg border-b border-black pb-3">Выпускной (11 класс)</h3>
+      <p class="text-sm leading-relaxed">Выпускной — это не просто вечер, а важный шаг во взрослую жизнь. Подарите себе праздник, который запомнится надолго: стильная атмосфера, живое общение и современное проведение без кризиса. С вниманием к каждому — выпускникам, родителям и учителям.</p>
+      <ul class="text-xs flex flex-col gap-1">
+        <li class="border-b border-black py-1">— Услуги ведущего и диджея, подготовка, встречи</li>
+        <li class="border-b border-black py-1">— Подбор артистов и оригинальных сюрпризов</li>
+        <li class="border-b border-black py-1">— Интерактивы с использованием ИИ</li>
+        <li class="border-b border-black py-1">— Чат для подготовки к празднику</li>
+        <li class="border-b border-black py-1">— Камера Instax mini 12 (картриджи отдельно)</li>
+        <li class="border-b border-black py-1">— Профессиональная караоке система</li>
+        <li class="border-b border-black py-1">— Заключение договора на оказание услуг</li>
+      </ul>
+      <div class="text-xs mt-1">
+        <div class="font-bold mb-1">Расписание:</div>
+        <div>21:00–22:00 — сбор гостей</div>
+        <div>22:00–03:00 — основная программа</div>
+        <div>03:00–04:00 — танцевальная часть с DJ</div>
+      </div>
+      <div class="font-bold text-lg">95 000 ₽</div>
+      <p class="text-xs">Прокат оборудования рассчитывается индивидуально.</p>
+      <a href="#contact" class="btn mt-auto">НАПИСАТЬ НАМ</a>
+    </div>
+  </div>
+  <p class="text-sm mt-8 border-t border-black pt-4">Другие виды мероприятий (корпоративы, юбилеи, закрытые вечеринки, презентации) обсуждаются отдельно.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     11. СТОИМОСТЬ — ОБОРУДОВАНИЕ
+════════════════════════════════════════════════════ -->
+<section id="equipment" class="max-w-screen-xl mx-auto px-8 py-16 border-t border-black">
+  <h2 class="text-3xl font-bold mb-10">Стоимость проката оборудования</h2>
+  <div class="flex flex-col gap-4">
+
+    <div class="border border-black p-6">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-bold">Комплект № 1</h3>
+        <span class="font-bold">12 000.00 руб.</span>
+      </div>
+      <ul class="text-sm flex flex-col gap-1 mb-4">
+        <li>— Стойка световая + 4 прожектора PAR RGBW – 2 шт.</li>
+        <li>— Прожектор PAR RGBW – 8 шт. (UPLIGHTING)</li>
+        <li>— Пульт управления DMX – 1 шт.</li>
+      </ul>
+      <a href="#contact" class="btn">НАПИСАТЬ НАМ</a>
+    </div>
+
+    <div class="border border-black p-6">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-bold">Комплект № 2</h3>
+        <span class="font-bold">15 000.00 руб.</span>
+      </div>
+      <ul class="text-sm flex flex-col gap-1 mb-4">
+        <li>— Стойка световая + 4 прожектора PAR RGBW – 2 шт.</li>
+        <li>— Прожектор PAR RGBW – 8 шт. (UPLIGHTING)</li>
+        <li>— Пульт управления DMX – 1 шт.</li>
+      </ul>
+      <a href="#contact" class="btn">НАПИСАТЬ НАМ</a>
+    </div>
+
+    <div class="border border-black p-6">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-bold">Комплект № 3</h3>
+        <span class="font-bold">30 000.00 руб.</span>
+      </div>
+      <ul class="text-sm flex flex-col gap-1 mb-4">
+        <li>— Прибор полного вращения BEAM 17R (2 шт.)</li>
+        <li>— Прибор полного вращения WASH 1940 (2 шт.)</li>
+        <li>— BLINDER 2100W (2 шт.)</li>
+        <li>— Тотем световой (2.5–3 м) – 2 шт.</li>
+        <li>— Пульт управления DMX – 1 шт.</li>
+        <li>— Хейзер масляный – 1 шт.</li>
+        <li>— Услуги техника на протяжении мероприятия</li>
+      </ul>
+      <a href="#contact" class="btn">НАПИСАТЬ НАМ</a>
+    </div>
+
+    <div class="border border-black p-6">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-bold">Комплект № 3+ (Расширенный свет)</h3>
+        <span class="font-bold">38 000.00 руб.</span>
+      </div>
+      <p class="text-sm mb-3">Увеличенное количество световых приборов для масштабного светового шоу на больших площадках.</p>
+      <ul class="text-sm flex flex-col gap-1 mb-4">
+        <li>— Прибор полного вращения BEAM 17R (4 шт. вместо двух)</li>
+        <li>— Прибор полного вращения WASH 1940 (2 шт.)</li>
+        <li>— BLINDER 2100W (2 шт.)</li>
+        <li>— Тотем световой (2.5–3 м) — 4 шт. вместо двух</li>
+        <li>— Пульт управления DMX – 1 шт.</li>
+        <li>— Хейзер масляный – 1 шт.</li>
+        <li>— Услуги техника на протяжении мероприятия</li>
+      </ul>
+      <a href="#contact" class="btn">НАПИСАТЬ НАМ</a>
+    </div>
+
+    <div class="border border-black p-6">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-bold">Комплект № 5</h3>
+        <span class="font-bold">25 000.00 руб.</span>
+      </div>
+      <ul class="text-sm flex flex-col gap-1 mb-4">
+        <li>— Акустическая система MACKIE SRM 450 (2 шт.)</li>
+        <li>— Активный сабвуфер DB Technologies SUB 18D (2 шт.)</li>
+        <li>— Прожектор на стойке PAR RGBW – 4 шт.</li>
+        <li>— Экран проекционный + проектор 3500 LM – 1 шт.</li>
+        <li>— Пульт управления DMX – 1 шт.</li>
+        <li>— Микшерный пульт YAMAHA MG10XU – 1 шт.</li>
+        <li>— Радиомикрофон – 2 шт.</li>
+        <li>— Доставка, монтаж в черте города</li>
+      </ul>
+      <a href="#contact" class="btn">НАПИСАТЬ НАМ</a>
+    </div>
+
+    <div class="border border-black p-6">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-bold">Комплект № 6</h3>
+        <span class="font-bold">30 000.00 руб.</span>
+      </div>
+      <ul class="text-sm flex flex-col gap-1 mb-4">
+        <li>— Акустическая система MACKIE SRM 450 (2 шт.)</li>
+        <li>— Активный сабвуфер DB Technologies SUB 18D (1 шт.)</li>
+        <li>— Прожектор на стойке PAR RGBW – 4 шт.</li>
+        <li>— LED TV на стойке 65 дюймов – 1 шт.</li>
+        <li>— Пульт управления DMX – 1 шт.</li>
+        <li>— Микшерный пульт YAMAHA MG10XU – 1 шт.</li>
+        <li>— Радиомикрофон – 2 шт.</li>
+        <li>— Доставка, монтаж в черте города</li>
+      </ul>
+      <a href="#contact" class="btn">НАПИСАТЬ НАМ</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     12. FAQ
+════════════════════════════════════════════════════ -->
+<section class="max-w-screen-xl mx-auto px-8 py-16 border-t border-black">
+  <h2 class="text-3xl font-bold mb-10">Частые ответы на вопросы</h2>
+  <div class="flex flex-col">
+
+    <details class="border-t border-black">
+      <summary class="py-4 font-bold text-sm cursor-pointer list-none flex justify-between items-center">
+        Заключаете ли вы договор? <span>+</span>
+      </summary>
+      <p class="text-sm leading-relaxed pb-4">Да, мы работаем официально по договору оказания услуг. Заключение договора происходит после согласования деталей мероприятия.</p>
+    </details>
+
+    <details class="border-t border-black">
+      <summary class="py-4 font-bold text-sm cursor-pointer list-none flex justify-between items-center">
+        Какое оборудование входит в стоимость проведения? <span>+</span>
+      </summary>
+      <p class="text-sm leading-relaxed pb-4">В стоимость тарифов (Свадьба, Банкет, Выпускной) входят услуги ведущего и диджея, а также базовые элементы подготовки программы. Стоимость проката звукового, светового и мультимедийного оборудования всегда рассчитывается индивидуально под параметры вашей площадки.</p>
+    </details>
+
+    <details class="border-t border-black">
+      <summary class="py-4 font-bold text-sm cursor-pointer list-none flex justify-between items-center">
+        Возможен ли выезд проведения мероприятий в другие города? <span>+</span>
+      </summary>
+      <p class="text-sm leading-relaxed pb-4">Другие виды мероприятий, а также выезды за пределы основной локации обсуждаются отдельно индивидуально.</p>
+    </details>
+
+    <details class="border-t border-black">
+      <summary class="py-4 font-bold text-sm cursor-pointer list-none flex justify-between items-center">
+        Как забронировать дату? <span>+</span>
+      </summary>
+      <p class="text-sm leading-relaxed pb-4">Дата считается официально забронированной за вами после подписания двустороннего договора и внесения обеспечительного платежа (предоплаты). С этого момента мы отказываем всем другим заказчикам на этот день.</p>
+    </details>
+
+    <details class="border-t border-black">
+      <summary class="py-4 font-bold text-sm cursor-pointer list-none flex justify-between items-center">
+        Что делать, если мероприятие задерживается или продлевается? <span>+</span>
+      </summary>
+      <p class="text-sm leading-relaxed pb-4">Возможность и стоимость продления работы ведущего, диджея и технического персонала на площадке четко прописываются в договоре. Вы всегда можете согласовать овертайм прямо во время вечера.</p>
+    </details>
+
+    <details class="border-t border-black">
+      <summary class="py-4 font-bold text-sm cursor-pointer list-none flex justify-between items-center">
+        Помогаете ли вы с подбором сторонних артистов и подрядчиков? <span>+</span>
+      </summary>
+      <p class="text-sm leading-relaxed pb-4">Да, в рамках подготовки мы делимся базой проверенных специалистов (фотографы, видеографы, декораторы), а также помогаем подобрать артистов оригинального жанра и шоу-программы под общую концепцию события.</p>
+    </details>
+
+    <details class="border-t border-black">
+      <summary class="py-4 font-bold text-sm cursor-pointer list-none flex justify-between items-center">
+        Каким образом создаются персонализированные интерактивы с ИИ? <span>+</span>
+      </summary>
+      <p class="text-sm leading-relaxed pb-4">Мы собираем информацию о виновниках торжества, компании или гостях заранее. Затем с помощью нейросетей генерируем уникальный контент: кастомные медиа-игры, визуальные фишки или предсказания, созданные специально под вашу аудиторию.</p>
+    </details>
+
+    <details class="border-t border-black">
+      <summary class="py-4 font-bold text-sm cursor-pointer list-none flex justify-between items-center">
+        Сколько времени требуется на монтаж звукового и светового оборудования? <span>+</span>
+      </summary>
+      <p class="text-sm leading-relaxed pb-4">В зависимости от выбранного комплекта оборудования, технической команде требуется от 2 до 4 часов до начала сбора гостей. Всё настраивается, тестируется и чекается в техническое время.</p>
+    </details>
+
+    <details class="border-t border-b border-black">
+      <summary class="py-4 font-bold text-sm cursor-pointer list-none flex justify-between items-center">
+        Что происходит, если ведущий заболеет перед мероприятием? <span>+</span>
+      </summary>
+      <p class="text-sm leading-relaxed pb-4">Форс-мажорные обстоятельства строго регламентированы договором. В нашей команде и профессиональном сообществе работает система взаимовыручки — в экстренной ситуации мы гарантируем предоставление равноценной замены без потери качества и изменения стоимости.</p>
+    </details>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     13. FOOTER
+════════════════════════════════════════════════════ -->
+<footer id="contact" class="border-t border-black mt-8">
+  <div class="max-w-screen-xl mx-auto px-8 py-12 flex items-center justify-between">
+    <div>
+      <div class="font-bold text-lg tracking-widest mb-2">МаркинPRO</div>
+      <a href="tel:+79785557545" class="text-sm">+7 (978) 555 75 45</a>
+    </div>
+    <a href="https://t.me/" class="btn" aria-label="Написать в Telegram">
+      <svg width="20" height="20" fill="currentColor"><use href="#tg"/></svg>
+    </a>
+    <div class="text-xs max-w-xs text-right">
+      © 2026 Андрей Маркин. Все права защищены.<br>
+      Режиссура событий и безопасные спецэффекты премиум-класса.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Андрей Маркин — МаркинPRO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@300;400;500;600;700" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+@font-face{font-family:'Anastasia';src:url('ofont.ru_Anastasia.woff') format('woff');font-weight:normal;font-style:normal;font-display:swap}
+@font-face{font-family:'Avalon';src:url('ofont.ru_Avalon-Medium.woff') format('woff');font-weight:normal;font-style:normal;font-display:swap}
+
+:root{
+  --bg:#0B0B0D;--bg-card:#131417;--bg-elevated:#1a1b1f;
+  --text:#F5F5F7;--text-dim:#8E8E93;--text-muted:#5a5a5e;
+  --gold:#C9A24B;--gold-dim:rgba(201,162,75,0.12);
+  --gold-glow:rgba(201,162,75,0.15);--gold-hover:rgba(201,162,75,0.4);
+  --radius:12px;--ease:cubic-bezier(0.4,0,0.2,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.06em;font-weight:600}
+a{text-decoration:none;color:inherit}
+img{display:block}
+
+/* ═══ PRELOADER ═══ */
+.preloader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;transition:opacity 0.6s,visibility 0.6s}
+.preloader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.preloader-text{font-family:'Oswald',sans-serif;font-size:24px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase}
+.preloader-bar{width:200px;height:2px;background:var(--gold-dim);border-radius:2px;overflow:hidden}
+.preloader-bar-fill{height:100%;width:0;background:var(--gold);border-radius:2px;transition:width 0.3s}
+
+/* ═══ CURSOR ═══ */
+.cursor{position:fixed;width:20px;height:20px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transition:transform 0.15s,opacity 0.3s;mix-blend-mode:difference}
+.cursor-dot{position:fixed;width:4px;height:4px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transition:transform 0.08s}
+@media(max-width:768px){.cursor,.cursor-dot{display:none}}
+
+/* ═══ BUTTONS ═══ */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:0 28px;height:48px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border-radius:var(--radius);gap:10px;cursor:pointer;transition:all 0.4s var(--ease);font-family:'Oswald',sans-serif;border:none;position:relative;overflow:hidden}
+.btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);opacity:0;transition:opacity 0.4s}
+.btn:hover::before{opacity:1}
+.btn-gold{background:var(--gold);color:#0B0B0D}
+.btn-gold:hover{background:#d4ad55;box-shadow:0 8px 32px rgba(201,162,75,0.35);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--gold);border:1px solid var(--gold-dim)}
+.btn-ghost:hover{border-color:var(--gold);background:var(--gold-glow);transform:translateY(-2px)}
+.btn-sm{height:40px;padding:0 20px;font-size:11px}
+
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(11,11,13,0.6);border-bottom:1px solid var(--gold-dim);transform:translateY(-100%);transition:transform 0.5s var(--ease)}
+.nav.visible{transform:translateY(0)}
+.nav-inner{max-width:1320px;margin:0 auto;padding:0 48px;height:72px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;letter-spacing:0.15em;color:var(--gold)}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-size:13px;font-weight:500;color:var(--text-dim);letter-spacing:0.06em;transition:color 0.3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width 0.3s var(--ease)}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{width:40px;height:40px;border-radius:50%;border:1px solid var(--gold-dim);display:flex;align-items:center;justify-content:center;transition:all 0.3s}
+.nav-cta:hover{border-color:var(--gold);background:var(--gold-glow);transform:scale(1.1)}
+.nav-cta svg{width:18px;height:18px;fill:var(--gold)}
+
+/* ═══ HERO ═══ */
+.hero{position:relative;height:100vh;min-height:700px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 20%;transform:scale(1.1);transition:transform 8s var(--ease)}
+.hero.loaded .hero-bg img{transform:scale(1)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,13,0.92) 0%,rgba(11,11,13,0.75) 28%,rgba(11,11,13,0.4) 55%,rgba(11,11,13,0.1) 78%,transparent 100%)}
+.hero-overlay::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,13,0.4) 0%,transparent 25%,transparent 65%,var(--bg) 100%)}
+.hero-content{position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:0 48px;padding-bottom:140px;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid var(--gold-dim);border-radius:100px;font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:32px;backdrop-filter:blur(8px);background:rgba(11,11,13,0.3)}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1{font-size:clamp(32px,5.5vw,72px);line-height:1.02;max-width:720px;margin-bottom:28px;font-weight:700}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.hero-desc{font-size:17px;color:var(--text-dim);max-width:500px;line-height:1.9;margin-bottom:48px}
+.hero-buttons{display:flex;gap:16px;flex-wrap:wrap;position:relative;z-index:2;padding:0 48px 48px;max-width:1320px}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-muted);font-size:10px;letter-spacing:0.2em;text-transform:uppercase}
+.hero-scroll-line{width:1px;height:40px;background:linear-gradient(180deg,var(--gold),transparent);animation:scrollLine 2s infinite}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ═══ MARQUEE ═══ */
+.marquee{border-top:1px solid var(--gold-dim);border-bottom:1px solid var(--gold-dim);padding:18px 0;overflow:hidden;position:relative}
+.marquee-track{display:flex;width:max-content;will-change:transform}
+.marquee-item{font-family:'Oswald',sans-serif;font-size:14px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);white-space:nowrap;padding:0 32px;display:flex;align-items:center;gap:32px}
+.marquee-item::after{content:'✦';font-size:8px;opacity:0.4}
+.marquee-mask{position:absolute;top:0;bottom:0;width:160px;z-index:2;pointer-events:none}
+.marquee-mask--l{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.marquee-mask--r{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
+
+/* ═══ SECTIONS ═══ */
+.section{padding:140px 0}
+.section-border{border-top:1px solid var(--gold-dim)}
+.container{max-width:1320px;margin:0 auto;padding:0 48px}
+.section-label{font-size:11px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.section-label::before{content:'';width:24px;height:1px;background:var(--gold)}
+.section-title{font-size:clamp(28px,4vw,48px);line-height:1.08;margin-bottom:16px;max-width:700px}
+.section-subtitle{font-size:16px;color:var(--text-dim);max-width:560px;line-height:1.8;margin-bottom:48px}
+
+/* ═══ TEXT REVEAL ═══ */
+.reveal-text{overflow:hidden}
+.reveal-text span{display:inline-block;transform:translateY(110%);transition:transform 0.8s var(--ease)}
+.reveal-text.active span{transform:translateY(0)}
+
+/* ═══ ABOUT ═══ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:stretch}
+.about-image{position:relative;border-radius:var(--radius);overflow:hidden}
+.about-image img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.about-image:hover img{transform:scale(1.05)}
+.about-image::after{content:'';position:absolute;inset:0;border:1px solid var(--gold-dim);border-radius:var(--radius);pointer-events:none}
+.about-image-badge{position:absolute;bottom:24px;left:24px;padding:12px 20px;background:rgba(11,11,13,0.8);backdrop-filter:blur(12px);border:1px solid var(--gold-dim);border-radius:var(--radius);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold)}
+.about-text p{font-size:15px;color:var(--text-dim);line-height:1.9;margin-bottom:20px}
+.about-text p strong{color:var(--text);font-weight:600}
+.about-stats{display:flex;gap:56px;margin-top:48px;padding-top:36px;border-top:1px solid var(--gold-dim)}
+.about-stat-num{font-family:'Oswald',sans-serif;font-size:42px;font-weight:700;color:var(--gold);line-height:1}
+.about-stat-label{font-size:12px;color:var(--text-muted);margin-top:8px;letter-spacing:0.06em}
+
+/* ═══ SERVICES ═══ */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.service-card{background:var(--bg-card);border:1px solid var(--gold-dim);border-radius:var(--radius);padding:44px 36px;display:flex;flex-direction:column;gap:20px;transition:all 0.5s var(--ease);position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity 0.5s}
+.service-card:hover::before{opacity:1}
+.service-card:hover{border-color:var(--gold-hover);transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.service-card h3{font-size:22px;color:var(--gold)}
+.service-card p{font-size:14px;color:var(--text-dim);line-height:1.8;flex:1}
+
+/* ═══ FEATURE ═══ */
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.feature-image{border-radius:var(--radius);overflow:hidden;position:relative}
+.feature-image img{width:100%;aspect-ratio:3/2;object-fit:cover;transition:transform 1s var(--ease)}
+.feature-image:hover img{transform:scale(1.04)}
+.feature-image::after{content:'';position:absolute;inset:0;border:1px solid var(--gold-dim);border-radius:var(--radius);pointer-events:none}
+.feature-list{list-style:none;margin:28px 0}
+.feature-list li{padding:14px 0;border-bottom:1px solid var(--gold-dim);font-size:14px;color:var(--text-dim);display:flex;align-items:center;gap:14px;transition:color 0.3s}
+.feature-list li:hover{color:var(--text)}
+.feature-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;transition:transform 0.3s}
+.feature-list li:hover::before{transform:scale(1.5)}
+
+/* ═══ USP ═══ */
+.usp-section{position:relative;background:url('images/A_dark,_premium_event_background_202606150329.jpeg') center/cover no-repeat}
+.usp-section::before{content:'';position:absolute;inset:0;background:rgba(11,11,13,0.85)}
+.usp-section .container{position:relative;z-index:1}
+.usp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.usp-item{padding:32px 0;border-top:1px solid var(--gold-dim)}
+.usp-item h3{font-size:18px;color:var(--text);margin-bottom:12px}
+.usp-item p{font-size:14px;color:var(--text-dim);line-height:1.7}
+.usp-num{font-family:'Oswald',sans-serif;font-size:64px;font-weight:700;color:var(--gold-dim);line-height:1;margin-bottom:20px;opacity:0.5}
+
+/* ═══ PORTFOLIO ═══ */
+.portfolio-gallery{display:flex;gap:20px;overflow-x:auto;scroll-behavior:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:40px 48px 60px;cursor:grab;will-change:scroll-position;overscroll-behavior-x:contain}
+.portfolio-gallery::-webkit-scrollbar{display:none}
+.portfolio-item{flex:0 0 300px;height:420px;border-radius:16px;overflow:hidden;cursor:pointer;position:relative;border:1px solid rgba(201,162,75,0.06);transition:border-color 0.3s,transform 0.3s var(--ease),box-shadow 0.3s var(--ease)}
+.portfolio-item:hover{border-color:var(--gold);transform:scale(1.03);z-index:2;box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+.portfolio-item img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+
+/* ═══ LIGHT HERO ═══ */
+.light-hero{position:relative;height:120vh;display:flex;align-items:flex-end;margin:0 calc(-50vw + 50%)}
+.light-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.light-overlay{position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,rgba(11,11,13,0.7) 40%,rgba(11,11,13,0.2) 70%,transparent 100%);z-index:1}
+.light-overlay::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(11,11,13,0.6) 100%)}
+.light-content{position:relative;z-index:2;padding:60px;max-width:500px}
+
+/* ═══ PRICING ═══ */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pricing-card{background:var(--bg-card);border:1px solid var(--gold-dim);border-radius:var(--radius);padding:44px 36px;display:flex;flex-direction:column;gap:20px;transition:all 0.5s var(--ease)}
+.pricing-card:hover{border-color:var(--gold-hover);transform:translateY(-6px)}
+.pricing-card h3{font-size:18px;padding-bottom:18px;border-bottom:1px solid var(--gold-dim)}
+.pricing-card p{font-size:14px;color:var(--text-dim);line-height:1.8}
+.pricing-list{list-style:none;flex:1}
+.pricing-list li{padding:10px 0;border-bottom:1px solid rgba(201,162,75,0.06);font-size:13px;color:var(--text-dim);display:flex;align-items:center;gap:8px}
+.pricing-list li::before{content:'—';color:var(--gold);font-size:10px}
+.pricing-price{font-family:'Oswald',sans-serif;font-size:32px;font-weight:700;color:var(--gold)}
+.pricing-note{font-size:12px;color:var(--text-muted)}
+
+/* ═══ FAQ ═══ */
+.faq-list{display:flex;flex-direction:column}
+.faq-item{border-top:1px solid var(--gold-dim)}
+.faq-item:last-child{border-bottom:1px solid var(--gold-dim)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:28px 0;cursor:pointer;user-select:none;width:100%;background:none;border:none;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:600;color:var(--text);text-align:left;letter-spacing:0.02em;transition:color 0.3s}
+.faq-q:hover{color:var(--gold)}
+.faq-icon{width:32px;height:32px;border-radius:50%;flex-shrink:0;border:1px solid var(--gold-dim);display:flex;align-items:center;justify-content:center;transition:all 0.4s var(--ease);color:var(--gold);font-size:18px;margin-left:16px}
+.faq-item.open .faq-icon{transform:rotate(45deg);border-color:var(--gold);background:var(--gold-glow)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.6s var(--ease)}
+.faq-item.open .faq-a{max-height:600px}
+.faq-a p{padding:0 0 28px;font-size:14px;color:var(--text-dim);line-height:1.9}
+.faq-list-items{padding:0 0 28px;margin:0;list-style:none}
+.faq-list-items li{padding:8px 0 8px 20px;font-size:14px;color:var(--text-dim);line-height:1.9;position:relative}
+.faq-list-items li::before{content:'';position:absolute;left:0;top:16px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+
+/* ═══ FOOTER ═══ */
+.footer{border-top:1px solid var(--gold-dim);padding:60px 0}
+.footer-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:40px;align-items:center}
+.footer-brand{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;letter-spacing:0.15em;color:var(--gold)}
+.footer-phone{font-size:15px;color:var(--text-dim);transition:color 0.3s;margin-top:8px;display:block}
+.footer-phone:hover{color:var(--gold)}
+.footer-copy{font-size:12px;color:var(--text-muted);text-align:right;line-height:1.7}
+
+/* ═══ LIGHTBOX ═══ */
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(11,11,13,0.96);display:none;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s}
+.lightbox.active{display:flex;opacity:1}
+.lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px}
+.lightbox-close{position:absolute;top:32px;right:32px;width:44px;height:44px;border-radius:50%;border:1px solid var(--gold-dim);background:var(--bg-card);color:var(--gold);font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s}
+.lightbox-close:hover{border-color:var(--gold);background:var(--gold-glow);transform:rotate(90deg)}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:1px solid var(--gold-dim);background:rgba(19,20,23,0.8);backdrop-filter:blur(8px);color:var(--gold);font-size:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;z-index:201}
+.lightbox-nav:hover{border-color:var(--gold);background:var(--gold-glow)}
+.lightbox-nav-r{right:40px}
+.lightbox-nav:not(.lightbox-nav-r){left:40px}
+
+/* ═══ BURGER ═══ */
+.burger{display:none;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;background:transparent;border:none;cursor:pointer;gap:5px;position:relative;z-index:110}
+.burger span{display:block;width:24px;height:2px;background:#F5F5F7;transition:all 0.3s ease}
+.burger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.burger.active span:nth-child(2){opacity:0}
+.burger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-menu{position:fixed;top:0;left:0;right:0;bottom:0;background:#131417;z-index:999;padding:80px 32px 40px;transform:translateY(-100%);transition:transform 0.4s ease;display:flex;flex-direction:column;overflow-y:auto}
+.mobile-menu.open{transform:translateY(0)}
+.mobile-menu .mobile-menu-links{list-style:none;display:flex;flex-direction:column;gap:0}
+.mobile-menu .mobile-menu-links a{font-family:'Oswald',sans-serif;font-size:24px;text-transform:uppercase;letter-spacing:0.1em;color:#F5F5F7;padding:16px 0;border-bottom:1px solid rgba(201,162,75,0.12);display:block;transition:color 0.3s}
+.mobile-menu .mobile-menu-links a.active{color:#C9A24B}
+.mobile-menu .mobile-menu-links a:hover{color:#C9A24B}
+.mobile-menu-close{position:absolute;top:24px;right:24px;width:44px;height:44px;background:transparent;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.mobile-menu-close svg{width:24px;height:24px;stroke:#8E8E93;stroke-width:2;fill:none}
+.mobile-menu .mobile-menu-cta{margin-top:auto;padding-top:32px}
+
+/* ═══ MOBILE ═══ */
+@media(max-width:768px){
+  .container{padding:0 20px}
+  .nav-inner{padding:0 20px}
+  .nav-links{display:none}
+  .burger{display:flex}
+  .hero{height:auto;min-height:auto;flex-direction:column;justify-content:flex-start;align-items:stretch;overflow:visible}
+  .hero-content{position:relative;order:1;padding:40px 24px 32px;max-width:100%;width:100%}
+  .hero-bg{position:relative;order:2;height:480px;overflow:hidden}
+  .hero-bg::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,#0B0B0D 5%,transparent 40%);z-index:1}
+  .hero-bg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(0deg,#0B0B0D 5%,transparent 40%);z-index:1}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:right center}
+  .hero-overlay{display:none}
+  .hero-buttons{order:3;padding:0 24px 48px}
+  .hero h1{font-size:28px}
+  .hero h1 span:first-child{font-size:104px!important}
+  .hero-scroll{display:none}
+  .section{padding:80px 0}
+  .about-grid,.feature-grid{grid-template-columns:1fr;gap:40px}
+  .about-image{max-width:400px}
+  .usp-grid{grid-template-columns:1fr}
+  .services-grid,.pricing-grid{grid-template-columns:1fr}
+  .portfolio-item{flex:0 0 260px;height:360px}
+  .portfolio-gallery{padding:20px 20px 40px;gap:14px}
+  .footer-grid{grid-template-columns:1fr;text-align:center}
+  .footer-copy{text-align:center}
+  .about-stats{gap:32px}
+  .section-title{font-size:28px}
+  .hero-badge{font-size:10px;padding:6px 12px}
+}
+</style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="preloader" id="preloader">
+  <img src="images/LOGO.png" alt="МаркинPRO" style="max-width:200px;height:auto;border-radius:8px">
+  <div class="preloader-bar"><div class="preloader-bar-fill" id="preloaderFill"></div></div>
+</div>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- SVG -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs><symbol id="tg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></symbol></defs></svg>
+
+<!-- ═══ NAV ═══ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="images/LOGO.png" alt="МаркинPRO" style="height:40px;width:auto;border-radius:4px"></a>
+    <ul class="nav-links">
+      <li><a href="portfolio.html">Портфолио</a></li>
+      <li><a href="light.html">Свет & Звук</a></li>
+      <li><a href="fx.html">Спецэффекты</a></li>
+      <li><a href="#pricing">Тарифы</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="https://t.me/andreymarkin" class="nav-cta" aria-label="Telegram"><svg><use href="#tg"/></svg></a>
+    <button class="burger" id="burger" aria-label="Открыть меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Закрыть меню">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <ul class="mobile-menu-links">
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="portfolio.html">Портфолио</a></li>
+    <li><a href="light.html">Свет & Звук</a></li>
+    <li><a href="fx.html">Спецэффекты</a></li>
+    <li><a href="#pricing">Тарифы</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="mobile-menu-cta">
+    <a href="https://t.me/andreymarkin" class="btn btn-gold" style="width:100%">Telegram</a>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="images/heroimage.png" alt="Андрей Маркин — ведущий мероприятий">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="hero-badge-dot"></span> Ведущий | Конферансье | Шоумен</div>
+    <h1><span style="font-family:'Avalon',cursive;font-weight:400;text-transform:none;letter-spacing:0.02em;font-size:1.4em;display:block">Андрей Маркин</span><span style="font-size:0.32em;letter-spacing:0.08em;color:var(--text-dim);font-weight:400;display:block;margin-top:12px;white-space:nowrap">Ведущий на свадьбу, корпоратив и премиум события</span></h1>
+    <p class="hero-desc">Профессиональная режиссура, интеллигентный юмор и технологичный продакшн мероприятий под ключ. 600+ событий для 50 000 гостей по всему Крыму и России.</p>
+  </div>
+  <div class="hero-buttons">
+    <a href="#contact" class="btn btn-gold">Обсудить ваше событие</a>
+    <a href="https://t.me/andreymarkin" class="btn btn-ghost"><svg width="16" height="16" fill="currentColor"><use href="#tg"/></svg> Telegram</a>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ═══ -->
+<div class="marquee">
+  <div class="marquee-mask marquee-mask--l"></div>
+  <div class="marquee-mask marquee-mask--r"></div>
+  <div class="marquee-track" id="marqueeTrack">
+    <div class="marquee-item">Свадьбы</div><div class="marquee-item">Юбилеи</div><div class="marquee-item">Корпоративы</div><div class="marquee-item">Дни рождения</div><div class="marquee-item">Премиум события</div><div class="marquee-item">Режиссура</div><div class="marquee-item">Живой вокал</div>
+    <div class="marquee-item">Свадьбы</div><div class="marquee-item">Юбилеи</div><div class="marquee-item">Корпоративы</div><div class="marquee-item">Дни рождения</div><div class="marquee-item">Премиум события</div><div class="marquee-item">Режиссура</div><div class="marquee-item">Живой вокал</div>
+    <div class="marquee-item">Свадьбы</div><div class="marquee-item">Юбилеи</div><div class="marquee-item">Корпоративы</div><div class="marquee-item">Дни рождения</div><div class="marquee-item">Премиум события</div><div class="marquee-item">Режиссура</div><div class="marquee-item">Живой вокал</div>
+    <div class="marquee-item">Свадьбы</div><div class="marquee-item">Юбилеи</div><div class="marquee-item">Корпоративы</div><div class="marquee-item">Дни рождения</div><div class="marquee-item">Премиум события</div><div class="marquee-item">Режиссура</div><div class="marquee-item">Живой вокал</div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="section section-border" id="about"><div class="container">
+  <div class="about-grid">
+    <div class="about-image" data-anim="fade-right">
+      <img src="images/aboutimage.png" alt="Андрей Маркин — портрет">
+      <div class="about-image-badge">7+ лет опыта</div>
+    </div>
+    <div class="about-text" data-anim="fade-left">
+      <div class="section-label">Обо мне</div>
+      <h2 class="section-title">Ведущий и вокалист для событий, которые хочется вспоминать</h2>
+      <p>За 7 лет я провёл более <strong>600 мероприятий</strong> для <strong>50 000 гостей</strong> по всему Крыму и России. Мне доверяют как частные торжества, так и масштабные проекты: среди моих клиентов <strong>Правительство Севастополя</strong>, банк <strong>ВТБ</strong> и театр им. <strong>Елизарова</strong>.</p>
+      <p>Мой стиль — это живой вокал, тонкая импровизация и деликатная интеллигентность. Я не просто развлекаю аудиторию, а создаю атмосферу, в которой каждому гостю легко, уютно и интересно.</p>
+      <p><em>Выдыхайте. Если вы читаете этот текст, значит, ваш праздник уже в надёжных руках.</em></p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:8px">
+        <a href="#" class="btn btn-gold">Смотреть презентацию</a>
+        <a href="#contact" class="btn btn-ghost">Написать</a>
+      </div>
+      <div class="about-stats">
+        <div><div class="about-stat-num" data-count="600">0</div><div class="about-stat-label">Мероприятий</div></div>
+        <div><div class="about-stat-num" data-count="50">0</div><div class="about-stat-label">Тысяч гостей</div></div>
+        <div><div class="about-stat-num" data-count="7">0</div><div class="about-stat-label">Лет опыта</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="section section-border"><div class="container">
+  <div class="section-label" data-anim="fade-up">Услуги</div>
+  <h2 class="section-title" data-anim="fade-up">Форматы проведения мероприятий</h2>
+  <div class="services-grid">
+    <div class="service-card" data-anim="fade-up" data-delay="0">
+      <h3>Свадьбы</h3>
+      <p>Элегантный европейский формат без пошлых конкурсов и навязчивых традиций. Тонкий психологизм, индивидуальный сценарий, построенный на истории пары, и безупречный такт.</p>
+      <a href="https://t.me/andreymarkin" class="btn btn-ghost btn-sm"><svg width="14" height="14" fill="currentColor"><use href="#tg"/></svg> Обсудить</a>
+    </div>
+    <div class="service-card" data-anim="fade-up" data-delay="1">
+      <h3>Корпоративы</h3>
+      <p>Масштабные концептуальные события для брендов и компаний. Интеграция ценностей компании в развлекательный контент, современные цифровые интерактивы.</p>
+      <a href="https://t.me/andreymarkin" class="btn btn-ghost btn-sm"><svg width="14" height="14" fill="currentColor"><use href="#tg"/></svg> Обсудить</a>
+    </div>
+    <div class="service-card" data-anim="fade-up" data-delay="2">
+      <h3>Частные события</h3>
+      <p>Камерные юбилеи, дни рождения и закрытые вечеринки. Формат intelligent luxury: атмосфера закрытого клуба, где каждый гость окружён вниманием.</p>
+      <a href="https://t.me/andreymarkin" class="btn btn-ghost btn-sm"><svg width="14" height="14" fill="currentColor"><use href="#tg"/></svg> Обсудить</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LIGHT ═══ -->
+<section class="section section-border" id="light">
+  <div class="light-hero" data-anim="fade-up">
+    <img src="images/light.jpg" alt="Световое оформление мероприятия">
+    <div class="light-overlay"></div>
+    <div class="light-content">
+      <div class="section-label">Свет & Звук</div>
+      <h2 class="section-title">Световое оформление премиум-класса</h2>
+      <p class="section-subtitle">Половина эмоций от шоу и идеальная картинка на фото и видео зависят от правильного света. У нас собственный комплект управляемого оборудования и светоинженер.</p>
+      <a href="light.html" class="btn btn-ghost">Подробнее про свет</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FX ═══ -->
+<section class="section section-border" id="fx"><div class="container">
+  <div class="about-grid" data-anim="fade-up">
+    <div class="about-image" style="aspect-ratio:3/4" id="fxVideoMain">
+      <video muted loop playsinline preload="auto" poster="images/effects.jpeg" style="width:100%;height:100%;object-fit:cover;display:block"><source src="https://res.cloudinary.com/dqufkjjbz/video/upload/v1781622438/markin/hero/effects.mp4" type="video/mp4"></video>
+    </div>
+    <div style="display:flex;flex-direction:column;justify-content:center">
+      <div class="section-label">Спецэффекты</div>
+      <h2 class="section-title">Эффекты для кульминационных моментов</h2>
+      <p class="section-subtitle">Мы закрываем все страхи площадок и невест. Наше оборудование сертифицировано, безопасно и разрешено к использованию в любых ресторанах.</p>
+      <ul class="feature-list">
+        <li>Тяжёлый дым (на сухом льду)</li>
+        <li>Холодные искры (Спаркуляры)</li>
+        <li>Крио-пушки (CO2)</li>
+        <li>Пирамида шампанского</li>
+      </ul>
+      <a href="fx.html" class="btn btn-ghost" style="align-self:flex-start">Подробнее про спецэффекты</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- ═══ USP ═══ -->
+<section class="section section-border usp-section"><div class="container">
+  <div class="section-label" data-anim="fade-up">Преимущества</div>
+  <h2 class="section-title" data-anim="fade-up">Современный подход к созданию событий</h2>
+  <div class="usp-grid" data-anim="fade-up">
+    <div class="usp-item">
+      <div class="usp-num">01</div>
+      <h3>Контроль атмосферы</h3>
+      <p>Мы объединяем программу, свет, звук и спецэффекты в один поминутный сценарий. На площадке нет места случайным паузам, заминкам или устаревшим конкурсам.</p>
+    </div>
+    <div class="usp-item">
+      <div class="usp-num">02</div>
+      <h3>Авторские интерактивы</h3>
+      <p>Интеллектуальные шоу вместо банальных развлечений. Собственная беспроводная система с кнопками «Брейндринг».</p>
+    </div>
+    <div class="usp-item">
+      <div class="usp-num">03</div>
+      <h3>Безупречный такт</h3>
+      <p>Тонкое чувство юмора, знание психологии гостей и умение управлять настроением зала.</p>
+    </div>
+  </div>
+  <div style="margin-top:48px" data-anim="fade-up"><a href="#contact" class="btn btn-gold">Написать нам</a></div>
+</div></section>
+
+<!-- ═══ PORTFOLIO ═══ -->
+<section class="section section-border" id="portfolio"><div class="container">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px">
+    <div>
+      <div class="section-label" data-anim="fade-up">Портфолио</div>
+      <h2 class="section-title" data-anim="fade-up" style="margin-bottom:0">Живые эмоции проектов</h2>
+    </div>
+    <a href="portfolio.html" class="btn btn-ghost btn-sm" data-anim="fade-up">Все проекты</a>
+  </div>
+</div>
+<div class="portfolio-gallery" data-anim="fade-up">
+  <div class="portfolio-item"><img loading="lazy" src="images/IMG_5557-1.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/IMG_5421.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/IMG_0646-2-1024x671.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/IMG_0667-1024x682.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/IMG_0732-1-1024x682.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/IMG_0772-1024x683.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/IMG_1463-1024x664.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/IMG_1466-1024x683.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/IMG_1485-1-1-1024x683.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/IMG_1922-scaled.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/IMG_2130-scaled.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/IMG_2616-1024x684.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/IMG_9158-1024x683.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/2026-01-28_125_resized-1024x683.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/f5e41664-e045-42a2-9c42-38a1fc4a9215-1-1024x682.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/2023-03-18-12-13-06-12-scaled.jpg" alt=""></div>
+  <div class="portfolio-item"><img loading="lazy" src="images/293e6b41a93ac084d70352a1f5cdc87e-scaled.jpg" alt=""></div>
+</div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="section section-border" id="pricing"><div class="container">
+  <div class="section-label" data-anim="fade-up">Тарифы</div>
+  <h2 class="section-title" data-anim="fade-up">Стоимость проведения мероприятия</h2>
+  <div class="pricing-grid">
+    <div class="pricing-card" data-anim="fade-up" data-delay="0">
+      <h3>Свадьба (церемония + банкет)</h3>
+      <p>Пошаговая разработка сценария: история любви, музыкальное оформление, услуги ведущего и диджея.</p>
+      <ul class="pricing-list"><li>Количество встреч ∞</li><li>Подбор артистов и сюрпризов</li><li>Игра «правда или ложь»</li><li>Интерактивы с ИИ</li><li>Чат для подготовки</li><li>Камера Instax mini 12</li><li>Договор</li><li>До 7 часов</li></ul>
+      <div class="pricing-price">95 000 ₽</div>
+      <div class="pricing-note">Ведущий и диджей. Оборудование — индивидуально.</div>
+      <a href="#contact" class="btn btn-gold" style="margin-top:auto">Написать нам</a>
+    </div>
+    <div class="pricing-card" data-anim="fade-up" data-delay="1">
+      <h3>Свадебный банкет</h3>
+      <p>Сценарий, уникальная программа интерактивов, услуги ведущего и диджея.</p>
+      <ul class="pricing-list"><li>Количество встреч ∞</li><li>Подбор артистов и сюрпризов</li><li>Игра «правда или ложь»</li><li>Интерактивы с ИИ</li><li>Чат для подготовки</li><li>Камера Instax mini 12</li><li>Караоке система</li><li>До 6 часов</li></ul>
+      <div class="pricing-price">85 000 ₽</div>
+      <div class="pricing-note">Ведущий и диджей. Оборудование — индивидуально.</div>
+      <a href="#contact" class="btn btn-gold" style="margin-top:auto">Написать нам</a>
+    </div>
+    <div class="pricing-card" data-anim="fade-up" data-delay="2">
+      <h3>Выпускной (11 класс)</h3>
+      <p>Стильная атмосфера, живое общение и современное проведение.</p>
+      <ul class="pricing-list"><li>Ведущий и диджей</li><li>Подбор артистов</li><li>Интерактивы с ИИ</li><li>Чат для подготовки</li><li>Камера Instax mini 12</li><li>Караоке система</li><li>Договор</li></ul>
+      <div class="pricing-price">95 000 ₽</div>
+      <div class="pricing-note">Оборудование — индивидуально.</div>
+      <a href="#contact" class="btn btn-gold" style="margin-top:auto">Написать нам</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="section section-border" id="faq"><div class="container">
+  <div class="section-label" data-anim="fade-up">FAQ</div>
+  <h2 class="section-title" data-anim="fade-up">Частые ответы на вопросы</h2>
+  <div class="faq-list">
+    <div class="faq-item" data-anim="fade-up"><button class="faq-q" onclick="toggleFaq(this)">Вы заключаете договор?<span class="faq-icon">+</span></button><div class="faq-a"><p>Да, с каждой парой я обязательно заключаю договор. Я работаю официально как самозанятый.</p><p>В договоре мы фиксируем дату мероприятия, стоимость услуг, подробный перечень того, что входит в работу ведущего, размер задатка, а также гарантии и обязательства обеих сторон. Это даёт спокойствие и прозрачность как вам, так и мне.</p></div></div>
+    <div class="faq-item" data-anim="fade-up"><button class="faq-q" onclick="toggleFaq(this)">Нужно ли вносить предоплату?<span class="faq-icon">+</span></button><div class="faq-a"><p>Да, при бронировании даты вносится задаток.</p><p>В повседневной речи его часто называют предоплатой, но юридически это именно задаток. Он является гарантией бронирования конкретной даты и подтверждает ваши намерения.</p><p>В задаток также входят все подготовительные и консультационные работы, которые я провожу до свадьбы: встречи, обсуждение концепции, сценарные решения. В случае отказа со стороны заказчика задаток не возвращается — это стандартная и понятная практика в ивент-сфере. А в случае отказа исполнителя возвращается в двойном размере.</p></div></div>
+    <div class="faq-item" data-anim="fade-up"><button class="faq-q" onclick="toggleFaq(this)">Возможна ли оплата по безналу?<span class="faq-icon">+</span></button><div class="faq-a"><p>Да, безналичная оплата возможна. Я зарегистрирован как самозанятый и имею официальный налоговый кабинет.</p><p>Оплата может производиться удобным для вас способом: наличными, переводом с карты на карту, либо по безналичному расчёту с выставлением счёта.</p></div></div>
+    <div class="faq-item" data-anim="fade-up"><button class="faq-q" onclick="toggleFaq(this)">Когда лучше бронировать ведущего?<span class="faq-icon">+</span></button><div class="faq-a"><p>Как только вы определились с датой свадьбы.</p><p>Если говорить подробнее, популярные и «красивые» даты часто бронируются за 6–12 месяцев. Поэтому самый правильный первый вопрос ведущему — свободна ли нужная вам дата.</p><p>Я бронирую даты только после личной или онлайн-встречи, где мы подробно обсуждаем формат праздника и понимаем, подходим ли мы друг другу. Если всё совпало — дата закрепляется за вами.</p></div></div>
+    <div class="faq-item" data-anim="fade-up"><button class="faq-q" onclick="toggleFaq(this)">В каком стиле вы ведёте свадьбы?<span class="faq-icon">+</span></button><div class="faq-a"><p>Интеллигентно, с комплиментарным юмором и правильным балансом между драйвом и лирикой.</p><p>Я умею проводить очень трогательные церемонии и свадебные традиции, а могу легко и уместно заряжать гостей позитивом, создавая живой и современный юмористический контент.</p><p>В целом стиль всегда подстраивается под конкретную свадьбу: ваши пожелания, состав гостей и ту атмосферу, которую вы хотите получить. Форматы бывают разные — от камерного семейного ужина до классической свадьбы, вечеринки у бассейна или тематического праздника (фильмы, сериалы, путешествия, национальные стили). За плечами большой опыт работы с разными форматами.</p></div></div>
+    <div class="faq-item" data-anim="fade-up"><button class="faq-q" onclick="toggleFaq(this)">Работаете ли вы с диджеем?<span class="faq-icon">+</span></button><div class="faq-a"><p>Да, я работаю со своим диджеем. У нас выстроен чёткий коннект и общий вайб — мы понимаем друг друга с полувзгляда.</p><p>Диджей на свадьбе — это не просто человек, который включает треки в программе «как в Winamp». Мы используем профессиональное лицензионное диджейское ПО в сочетании с контроллером. Это позволяет сводить, миксовать, машапить треки и управлять музыкальной атмосферой праздника на высоком уровне. Музыка не просто звучит фоном, а усиливает нужные эмоции гостей в конкретный момент вечера.</p><p>При подготовке к свадьбе мы обязательно просим вас составить два музыкальных списка:</p><ul class="faq-list-items"><li><strong>Top-лист</strong> — примерно 15 самых любимых и танцевальных треков и исполнителей. Это помогает вам услышать то, что действительно нравится, а нам понять музыкальный вектор вечера.</li><li><strong>Stop-лист</strong> — песни и исполнители, которые не будут включены ни при каких условиях, даже если гости очень настойчиво попросят.</li></ul><p>Такой подход позволяет сделать музыкальную часть праздника максимально комфортной, современной и полностью соответствующей вашему вкусу.</p></div></div>
+    <div class="faq-item" data-anim="fade-up"><button class="faq-q" onclick="toggleFaq(this)">Есть ли отзывы реальных пар?<span class="faq-icon">+</span></button><div class="faq-a"><p>Да, все отзывы на сайте — реальные. Я искренне горжусь каждым отзывом от своих пар.</p><p>Лучше всего они говорят о моей работе сами за себя, поэтому предлагаю вам просто их прочитать и сделать собственные выводы.</p></div></div>
+    <div class="faq-item" data-anim="fade-up"><button class="faq-q" onclick="toggleFaq(this)">Вы помогаете с подбором площадки и подрядчиков под наш бюджет?<span class="faq-icon">+</span></button><div class="faq-a"><p>Выбирая меня в качестве ведущего, в вашем распоряжении оказывается команда МаркинPRO. В неё входят специалисты по спецэффектам, техническому обеспечению мероприятия (звук, свет, мультимедиа), светооператоры для управления профессиональным светом, координаторы и мобилографы.</p><p>Если вы планируете заниматься организацией свадьбы самостоятельно, я также могу помочь с подбором остальных подрядчиков: площадки, фотографа, видеографа, декоратора и других специалистов. Все рекомендации основаны на моём личном опыте работы с ними, ваших пожеланиях, формате праздника и, конечно, запланированном бюджете.</p></div></div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer" id="contact"><div class="container">
+  <div class="footer-grid">
+    <div><img src="images/LOGO.png" alt="МаркинPRO" style="height:40px;width:auto;border-radius:4px"><a href="tel:+79785557545" class="footer-phone">+7 (978) 555 75 45</a></div>
+    <a href="https://t.me/andreymarkin" class="btn btn-ghost" aria-label="Telegram"><svg width="18" height="18" fill="currentColor"><use href="#tg"/></svg> Написать в Telegram</a>
+    <div class="footer-copy">© 2026 Андрей Маркин. Все права защищены.<br>Режиссура событий и безопасные спецэффекты премиум-класса.</div>
+  </div>
+</div></footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><button class="lightbox-close">&times;</button><button class="lightbox-nav" onclick="event.stopPropagation();lbNav(-1)">&#8249;</button><img src="" alt="" id="lightboxImg" onclick="event.stopPropagation()"><button class="lightbox-nav lightbox-nav-r" onclick="event.stopPropagation();lbNav(1)">&#8250;</button></div>
+
+<script>
+// ═══ PRELOADER ═══
+let loadProgress = 0;
+const fill = document.getElementById('preloaderFill');
+const preloader = document.getElementById('preloader');
+const interval = setInterval(() => {
+  loadProgress += Math.random() * 15;
+  if(loadProgress >= 100) { loadProgress = 100; clearInterval(interval); }
+  fill.style.width = loadProgress + '%';
+}, 100);
+window.addEventListener('load', () => {
+  fill.style.width = '100%';
+  setTimeout(() => {
+    preloader.classList.add('hidden');
+    document.getElementById('hero').classList.add('loaded');
+    initAnimations();
+  }, 600);
+});
+
+// ═══ CURSOR ═══
+const cursor = document.getElementById('cursor');
+const cursorDot = document.getElementById('cursorDot');
+if(window.innerWidth > 768) {
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX - 10 + 'px';
+    cursor.style.top = e.clientY - 10 + 'px';
+    cursorDot.style.left = e.clientX - 2 + 'px';
+    cursorDot.style.top = e.clientY - 2 + 'px';
+  });
+  document.querySelectorAll('a,button,.service-card,.bento-cell,.portfolio-card,.pricing-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(2.5)');
+    el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+  });
+}
+
+// ═══ NAV SHOW ON SCROLL ═══
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  if(window.scrollY > 100) nav.classList.add('visible');
+  else nav.classList.remove('visible');
+  lastScroll = window.scrollY;
+});
+
+// ═══ MARQUEE ═══
+const marqueeTrack = document.getElementById('marqueeTrack');
+let marqueePos = 0;
+function animateMarquee() {
+  marqueePos -= 0.5;
+  if(Math.abs(marqueePos) >= marqueeTrack.scrollWidth / 2) marqueePos = 0;
+  marqueeTrack.style.transform = `translateX(${marqueePos}px)`;
+  requestAnimationFrame(animateMarquee);
+}
+animateMarquee();
+
+// ═══ GSAP ANIMATIONS ═══
+function initAnimations() {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Staggered fade-up
+  document.querySelectorAll('[data-anim="fade-up"]').forEach(el => {
+    const delay = (el.dataset.delay || 0) * 0.15;
+    gsap.fromTo(el, {opacity:0, y:50}, {
+      opacity:1, y:0, duration:0.9, ease:'power3.out', delay:delay,
+      scrollTrigger:{trigger:el, start:'top 88%', toggleActions:'play none none none'}
+    });
+  });
+
+  // Fade right
+  document.querySelectorAll('[data-anim="fade-right"]').forEach(el => {
+    gsap.fromTo(el, {opacity:0, x:-60}, {
+      opacity:1, x:0, duration:1, ease:'power3.out',
+      scrollTrigger:{trigger:el, start:'top 85%', toggleActions:'play none none none'}
+    });
+  });
+
+  // Fade left
+  document.querySelectorAll('[data-anim="fade-left"]').forEach(el => {
+    gsap.fromTo(el, {opacity:0, x:60}, {
+      opacity:1, x:0, duration:1, ease:'power3.out',
+      scrollTrigger:{trigger:el, start:'top 85%', toggleActions:'play none none none'}
+    });
+  });
+
+  // Counter animation
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count);
+    gsap.fromTo(el, {textContent:0}, {
+      textContent:target, duration:2, ease:'power2.out', snap:{textContent:1},
+      scrollTrigger:{trigger:el, start:'top 85%', toggleActions:'play none none none'}
+    });
+  });
+
+  // Parallax hero
+  gsap.to('.hero-bg img', {
+    yPercent:20, ease:'none',
+    scrollTrigger:{trigger:'.hero', start:'top top', end:'bottom top', scrub:true}
+  });
+}
+
+// ═══ FAQ ═══
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
+}
+
+// ═══ PORTFOLIO SCROLL ═══
+const pg=document.querySelector('.portfolio-gallery');
+let pgDragging=false,pgDragDecided=false,pgStartX,pgStartY,pgScrollLeft,pgMoved,pgVel=0,pgPrevX;
+pg.addEventListener('mousedown',e=>{
+  const r=pg.getBoundingClientRect();
+  if(e.clientY<r.top||e.clientY>r.bottom)return;
+  pgDragging=true;pgDragDecided=false;pgMoved=false;
+  pgStartX=e.pageX;pgStartY=e.clientY;pgPrevX=e.pageX;pgScrollLeft=pg.scrollLeft;pgVel=0;
+});
+document.addEventListener('mousemove',e=>{
+  if(!pgDragging)return;
+  if(!pgDragDecided){
+    const dx=Math.abs(e.pageX-pgStartX);
+    const dy=Math.abs(e.clientY-pgStartY);
+    if(dy>dx){pgDragging=false;return}
+    if(dx>5)pgDragDecided=true;
+    else return;
+  }
+  e.preventDefault();
+  pgMoved=true;
+  pg.style.scrollSnapType='none';
+  pgVel=e.pageX-pgPrevX;pgPrevX=e.pageX;
+  pg.scrollLeft=pgScrollLeft-(e.pageX-pgStartX);
+});
+document.addEventListener('mouseup',()=>{
+  if(!pgDragging)return;
+  pgDragging=false;pg.style.scrollSnapType='';
+  pgMomentum();
+});
+function pgMomentum(){
+  pgVel*=0.96;
+  if(Math.abs(pgVel)<0.3)return;
+  pg.scrollLeft-=pgVel;
+  requestAnimationFrame(pgMomentum);
+}
+pg.addEventListener('touchstart',e=>{
+  const t=e.touches[0],r=pg.getBoundingClientRect();
+  if(t.pageY<r.top||t.pageY>r.bottom)return;
+  pgDragging=true;pgDragDecided=false;pgMoved=false;
+  pgStartX=t.pageX;pgStartY=t.pageY;pgPrevX=t.pageX;pgScrollLeft=pg.scrollLeft;pgVel=0;
+},{passive:true});
+pg.addEventListener('touchmove',e=>{
+  if(!pgDragging)return;
+  const t=e.touches[0];
+  if(!pgDragDecided){
+    const dx=Math.abs(t.pageX-pgStartX);
+    const dy=Math.abs(t.pageY-pgStartY);
+    if(dy>dx){pgDragging=false;return}
+    if(dx>5)pgDragDecided=true;
+    else return;
+  }
+  const dx=t.pageX-pgPrevX;
+  const atStart=pg.scrollLeft<=0&&dx>0;
+  const atEnd=pg.scrollLeft>=pg.scrollWidth-pg.clientWidth-1&&dx<0;
+  if(!atStart&&!atEnd)e.preventDefault();
+  pgMoved=true;
+  pgVel=t.pageX-pgPrevX;pgPrevX=t.pageX;
+  pg.scrollLeft=pgScrollLeft-(t.pageX-pgStartX);
+},{passive:false});
+pg.addEventListener('touchend',()=>{if(!pgDragging)return;pgDragging=false;pg.style.scrollSnapType='';pgMomentum()});
+pg.querySelectorAll('.portfolio-item').forEach(card=>{
+  card.addEventListener('click',e=>{if(pgMoved){e.preventDefault();e.stopPropagation();return}openLightbox(card)})
+});
+
+// ═══ LIGHTBOX ═══
+let lbItems=[],lbIdx=0;
+function openLightbox(el) {
+  lbItems=[...document.querySelectorAll('.portfolio-item img')];
+  lbIdx=lbItems.indexOf(el.querySelector('img'));
+  document.getElementById('lightboxImg').src=lbItems[lbIdx].src;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function lbNav(dir){
+  lbIdx=(lbIdx+dir+lbItems.length)%lbItems.length;
+  document.getElementById('lightboxImg').src=lbItems[lbIdx].src;
+}
+document.addEventListener('keydown', e => {
+  if(!document.getElementById('lightbox').classList.contains('active'))return;
+  if(e.key==='Escape')closeLightbox();
+  if(e.key==='ArrowRight')lbNav(1);
+  if(e.key==='ArrowLeft')lbNav(-1);
+});
+
+// Mobile: disable fancy animations
+if(window.innerWidth <= 768) {
+  document.querySelectorAll('[data-anim]').forEach(el => {
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  });
+}
+
+// ═══ FX VIDEO HOVER ═══
+const fxVideoMain=document.getElementById('fxVideoMain');
+if(fxVideoMain){const v=fxVideoMain.querySelector('video');v.load();
+fxVideoMain.addEventListener('mouseenter',()=>v.play().catch(()=>{}));
+fxVideoMain.addEventListener('mouseleave',()=>{v.pause();v.currentTime=0})}
+
+// ═══ MOBILE BURGER MENU ═══
+(function(){
+  const burger=document.getElementById('burger');
+  const menu=document.getElementById('mobileMenu');
+  const close=document.getElementById('mobileMenuClose');
+  if(!burger||!menu)return;
+  burger.addEventListener('click',()=>{burger.classList.toggle('active');menu.classList.toggle('open');document.body.style.overflow=menu.classList.contains('open')?'hidden':''});
+  close.addEventListener('click',()=>{burger.classList.remove('active');menu.classList.remove('open');document.body.style.overflow=''});
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('active');menu.classList.remove('open');document.body.style.overflow=''}));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Спецэффекты — МаркинPRO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B0B0D;--bg-card:#131417;--bg-elevated:#1a1b1f;--text:#F5F5F7;--text-dim:#8E8E93;--text-muted:#5a5a5e;--gold:#C9A24B;--gold-dim:rgba(201,162,75,0.12);--gold-glow:rgba(201,162,75,0.15);--gold-hover:rgba(201,162,75,0.4);--radius:12px;--ease:cubic-bezier(0.4,0,0.2,1)}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;box-shadow:inset 0 0 200px rgba(201,162,75,0.08)}
+h1,h2,h3,h4{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.06em;font-weight:600}
+a{text-decoration:none;color:inherit}
+img{display:block}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:0 28px;height:48px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border-radius:var(--radius);gap:10px;cursor:pointer;transition:all 0.4s var(--ease);font-family:'Oswald',sans-serif;border:none;position:relative;overflow:hidden}
+.btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);opacity:0;transition:opacity 0.4s}
+.btn:hover::before{opacity:1}
+.btn-gold{background:var(--gold);color:#0B0B0D}
+.btn-gold:hover{background:#d4ad55;box-shadow:0 8px 32px rgba(201,162,75,0.35);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--gold);border:1px solid var(--gold-dim)}
+.btn-ghost:hover{border-color:var(--gold);background:var(--gold-glow);transform:translateY(-2px)}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(11,11,13,0.6);border-bottom:1px solid var(--gold-dim);transform:translateY(-100%);transition:transform 0.5s var(--ease)}
+.nav.visible{transform:translateY(0)}
+.video-hero{position:relative;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.video-hero-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:177.78vh;height:56.25vw;min-width:100%;min-height:100%}
+.video-hero-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;pointer-events:none}
+.video-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,13,0.2) 0%,rgba(11,11,13,0.5) 60%,rgba(11,11,13,1) 100%);z-index:1}
+.video-hero-content{position:relative;z-index:2;text-align:center}
+.video-hero-content h1{font-family:'Oswald',sans-serif;font-size:56px;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:var(--text);margin-bottom:16px}
+.video-hero-content p{font-size:18px;color:var(--text-dim)}
+.hero-stats{display:flex;justify-content:center;align-items:center;gap:0;padding:60px 48px;border-bottom:1px solid var(--gold-dim)}
+.hero-stat{text-align:center;padding:0 56px;position:relative}
+.hero-stat:not(:last-child)::after{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);width:1px;height:48px;background:var(--gold-dim)}
+.hero-stat-num{font-family:'Oswald',sans-serif;font-size:42px;font-weight:700;color:var(--gold);line-height:1}
+.hero-stat-label{font-size:13px;color:var(--text-dim);margin-top:8px;letter-spacing:0.06em}
+.nav-inner{max-width:1320px;margin:0 auto;padding:0 48px;height:72px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;letter-spacing:0.15em;color:var(--gold)}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-size:13px;font-weight:500;color:var(--text-dim);letter-spacing:0.06em;transition:color 0.3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width 0.3s var(--ease)}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-links a.active{color:var(--gold)}
+.nav-links a.active::after{width:100%}
+.nav-cta{width:40px;height:40px;border-radius:50%;border:1px solid var(--gold-dim);display:flex;align-items:center;justify-content:center;transition:all 0.3s}
+.nav-cta:hover{border-color:var(--gold);background:var(--gold-glow);transform:scale(1.1)}
+.nav-cta svg{width:18px;height:18px;fill:var(--gold)}
+
+.page-hero{padding:160px 0 80px;text-align:center;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;top:50%;left:50%;width:800px;height:800px;background:radial-gradient(circle,rgba(201,162,75,0.06),transparent 70%);transform:translate(-50%,-50%);pointer-events:none}
+.page-hero h1{font-size:clamp(32px,5vw,56px);margin-bottom:16px}
+.page-hero p{font-size:16px;color:var(--text-dim);max-width:600px;margin:0 auto;line-height:1.8}
+
+.container{max-width:1320px;margin:0 auto;padding:0 48px}
+.section{padding:120px 0}
+.section-border{border-top:none;position:relative}
+.section-border::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent 0%,rgba(201,162,75,0.5) 50%,transparent 100%)}
+.section-label{font-size:11px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.section-label::before{content:'';width:24px;height:1px;background:var(--gold)}
+.section-title{font-size:clamp(28px,4vw,48px);line-height:1.08;margin-bottom:16px;max-width:700px}
+.section-subtitle{font-size:16px;color:var(--text-dim);max-width:600px;line-height:1.8;margin-bottom:48px}
+
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:stretch}
+.feature-image{border-radius:var(--radius);overflow:hidden;border:1px solid var(--gold-dim);position:relative;cursor:pointer}
+.feature-image video,.feature-image img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+
+/* ═══ FX CARDS ═══ */
+.fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.fx-card{background:var(--bg-card);border:1px solid var(--gold-dim);border-radius:var(--radius);padding:44px 36px;transition:all 0.5s var(--ease);position:relative;overflow:hidden}
+.fx-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity 0.5s}
+.fx-card:hover::before{opacity:1}
+.fx-card:hover{border-color:var(--gold-hover);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.fx-card h3{font-size:22px;color:var(--gold);margin-bottom:12px}
+.fx-card p{font-size:14px;color:var(--text-dim);line-height:1.8}
+.fx-card-full{grid-column:1/-1}
+
+/* ═══ PRICING TABLE ═══ */
+.price-table{width:100%;border-collapse:collapse;margin:24px 0 0}
+.price-table tr{border-bottom:1px solid var(--gold-dim);transition:background 0.3s}
+.price-table tr:last-child{border-bottom:none}
+.price-table tr:hover{background:rgba(201,162,75,0.03)}
+.price-table td{padding:14px 0;font-size:14px;color:var(--text-dim);vertical-align:top}
+.price-table td:first-child{color:var(--text);font-weight:500;padding-right:24px}
+.price-table .price{font-family:'Oswald',sans-serif;font-size:16px;color:var(--gold);white-space:nowrap;text-align:right}
+.price-note{font-size:12px;color:var(--text-muted);margin-top:16px;line-height:1.7;font-style:italic}
+
+/* ═══ TABS ═══ */
+.tabs-bar{background:var(--bg-card);border-bottom:1px solid var(--gold-dim);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs-bar::-webkit-scrollbar{display:none}
+.tabs-inner{max-width:1320px;margin:0 auto;padding:0 48px;display:flex;flex-wrap:nowrap;justify-content:center;gap:0;white-space:nowrap}
+.tab-btn{font-family:'Oswald',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);background:none;border:none;border-bottom:2px solid transparent;padding:0 24px;height:48px;cursor:pointer;transition:color 0.3s,border-color 0.3s;flex-shrink:0;white-space:nowrap;display:flex;align-items:center}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+.safety{position:relative;height:600px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.safety-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.safety-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,13,0.55) 0%,rgba(11,11,13,0.7) 100%)}
+.safety-content{position:relative;z-index:2;text-align:center;max-width:700px;padding:0 48px}
+.safety-content .section-label{justify-content:center}
+.safety-content h2{font-size:48px;color:var(--text);margin-bottom:20px}
+.safety-content p{font-size:16px;color:var(--text-dim);margin-bottom:48px;line-height:1.8}
+.safety-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;list-style:none}
+.safety-list li{background:rgba(11,11,13,0.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,162,75,0.2);border-radius:8px;padding:12px 20px;display:flex;align-items:center;gap:8px;font-size:13px;font-family:'Montserrat',sans-serif;color:var(--text);white-space:nowrap;justify-content:center}
+.safety-list li::before{content:'✦';color:var(--gold);font-size:10px}
+.tab-panel{display:none;padding:100px 0}
+.tab-panel.active{display:block}
+.tab-panel .container{max-width:1320px;margin:0 auto;padding:0 48px}
+.tab-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start}
+.tab-image{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(201,162,75,0.2);position:sticky;top:100px}
+.tab-image img{width:100%;height:100%;object-fit:cover;display:block;max-height:480px}
+.tab-text{display:flex;flex-direction:column;gap:20px}
+.tab-text h2{font-size:clamp(24px,3vw,36px);color:var(--gold);margin-bottom:4px}
+.tab-text .tab-desc{font-size:15px;color:var(--text-dim);line-height:1.8}
+.tab-subtitle{font-family:'Oswald',sans-serif;font-size:14px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);margin-top:8px}
+.tab-price{width:100%;border-collapse:collapse}
+.tab-price tr{border-bottom:1px solid rgba(201,162,75,0.12)}
+.tab-price tr:last-child{border-bottom:none}
+.tab-price td{padding:16px 0;font-size:14px;vertical-align:top}
+.tab-price td:first-child{color:var(--text);font-weight:500;padding-right:24px}
+.tab-price .price{font-family:'Oswald',sans-serif;font-size:16px;color:var(--gold);white-space:nowrap;text-align:right}
+.tab-note{font-size:12px;color:var(--text-muted);margin-top:12px;line-height:1.7;font-style:italic}
+
+/* ═══ HIGHLIGHT CARD ═══ */
+.highlight-card{background:linear-gradient(135deg,rgba(201,162,75,0.08),rgba(201,162,75,0.02));border:1px solid var(--gold-dim);border-radius:var(--radius);padding:32px 36px;margin-top:32px}
+.highlight-card h4{font-size:16px;color:var(--gold);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.08em}
+.highlight-card p{font-size:14px;color:var(--text-dim);line-height:1.8}
+
+/* ═══ DUAL GRID ═══ */
+.dual-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.dual-card{background:var(--bg-card);border:1px solid var(--gold-dim);border-radius:var(--radius);padding:36px 32px;transition:all 0.5s var(--ease)}
+.dual-card:hover{border-color:var(--gold-hover);transform:translateY(-4px)}
+.dual-card h4{font-size:18px;color:var(--gold);margin-bottom:8px}
+.dual-card>p{font-size:14px;color:var(--text-dim);line-height:1.8;margin-bottom:16px}
+
+/* ═══ BADGE ═══ */
+.badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border:1px solid var(--gold-dim);border-radius:100px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;background:rgba(201,162,75,0.05)}
+.badge-new{border-color:rgba(201,162,75,0.4);background:rgba(201,162,75,0.12)}
+
+/* ═══ MASONRY GALLERY ═══ */
+.gallery-section{padding:100px 0 120px}
+.gallery-masonry{columns:3;column-gap:16px}
+.gallery-item{break-inside:avoid;margin-bottom:16px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--gold-dim);position:relative;cursor:pointer;transition:border-color 0.4s var(--ease),transform 0.4s var(--ease);display:inline-block;width:100%}
+.gallery-item:hover{border-color:var(--gold-hover);transform:translateY(-4px)}
+.gallery-item img,.gallery-item video{width:100%;display:block;border-radius:var(--radius)}
+.gallery-overlay{position:absolute;inset:0;background:rgba(11,11,13,0.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s var(--ease);border-radius:var(--radius)}
+.gallery-item:hover .gallery-overlay{opacity:1}
+.gallery-icon{width:56px;height:56px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);background:rgba(11,11,13,0.5);backdrop-filter:blur(8px);transition:transform 0.3s var(--ease)}
+.gallery-item:hover .gallery-icon{transform:scale(1.1)}
+.gallery-icon svg{width:24px;height:24px;fill:var(--gold)}
+
+/* ═══ LIGHTBOX ═══ */
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(11,11,13,0.96);display:none;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s}
+.lightbox.active{display:flex;opacity:1}
+.lightbox img,.lightbox video{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px}
+.lightbox video{outline:none}
+.lightbox-close{position:absolute;top:32px;right:32px;width:44px;height:44px;border-radius:50%;border:1px solid var(--gold-dim);background:var(--bg-card);color:var(--gold);font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;z-index:201}
+.lightbox-close:hover{border-color:var(--gold);background:var(--gold-glow);transform:rotate(90deg)}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:1px solid var(--gold-dim);background:rgba(19,20,23,0.8);backdrop-filter:blur(8px);color:var(--gold);font-size:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;z-index:201}
+.lightbox-nav:hover{border-color:var(--gold);background:var(--gold-glow)}
+.lightbox-nav-r{right:40px}
+.lightbox-nav:not(.lightbox-nav-r){left:40px}
+
+.burger{display:none;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;background:transparent;border:none;cursor:pointer;gap:5px;position:relative;z-index:110}
+.burger span{display:block;width:24px;height:2px;background:#F5F5F7;transition:all 0.3s ease}
+.burger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.burger.active span:nth-child(2){opacity:0}
+.burger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-menu{position:fixed;top:0;left:0;right:0;bottom:0;background:#131417;z-index:999;padding:80px 32px 40px;transform:translateY(-100%);transition:transform 0.4s ease;display:flex;flex-direction:column;overflow-y:auto}
+.mobile-menu.open{transform:translateY(0)}
+.mobile-menu .mobile-menu-links{list-style:none;display:flex;flex-direction:column;gap:0}
+.mobile-menu .mobile-menu-links a{font-family:'Oswald',sans-serif;font-size:24px;text-transform:uppercase;letter-spacing:0.1em;color:#F5F5F7;padding:16px 0;border-bottom:1px solid rgba(201,162,75,0.12);display:block;transition:color 0.3s}
+.mobile-menu .mobile-menu-links a.active{color:#C9A24B}
+.mobile-menu .mobile-menu-links a:hover{color:#C9A24B}
+.mobile-menu-close{position:absolute;top:24px;right:24px;width:44px;height:44px;background:transparent;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.mobile-menu-close svg{width:24px;height:24px;stroke:#8E8E93;stroke-width:2;fill:none}
+.mobile-menu .mobile-menu-cta{margin-top:auto;padding-top:32px}
+
+/* ═══ MOBILE ═══ */
+@media(max-width:768px){
+  .container{padding:0 20px}
+  .nav-inner{padding:0 20px}
+  .nav-links{display:none}
+  .burger{display:flex}
+  .page-hero{padding:120px 0 60px}
+  .video-hero-content h1{font-size:32px}
+  .video-hero-content p{font-size:16px}
+  .hero-stats{flex-direction:column;gap:32px;padding:48px 20px}
+  .hero-stat{padding:0}
+  .hero-stat:not(:last-child)::after{display:none}
+  .hero-stat-num{font-size:36px}
+  .section{padding:60px 0}
+  .tab-panel{padding:60px 0}
+  .tab-panel .container{padding:0 20px}
+  .tab-layout{grid-template-columns:1fr;gap:32px}
+  .tab-image{position:relative;top:auto}
+  .tab-image img{min-height:280px;max-height:360px}
+  .safety{height:auto;padding:80px 0}
+  .safety-content{padding:0 20px}
+  .safety-content h2{font-size:28px}
+  .safety-list{grid-template-columns:1fr;gap:10px}
+  .safety-list li{font-size:12px;padding:10px 16px}
+  .tabs-inner{padding:0 20px;justify-content:flex-start}
+  .tab-btn{font-size:12px;padding:0 16px;height:44px}
+  .feature-grid,.dual-grid{grid-template-columns:1fr;gap:40px}
+  .fx-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;text-align:center}
+  .footer-copy{text-align:center}
+  .category-num{font-size:48px}
+  .price-table td{font-size:13px;padding:12px 0}
+  .gallery-masonry{columns:2;column-gap:12px}
+  .gallery-item{margin-bottom:12px}
+  .gallery-icon{width:44px;height:44px}
+  .gallery-icon svg{width:18px;height:18px}
+  .lightbox-nav{width:40px;height:40px;font-size:22px}
+  .lightbox-nav-r{right:16px}
+  .lightbox-nav:not(.lightbox-nav-r){left:16px}
+  .lightbox-close{top:16px;right:16px}
+}
+@media(max-width:480px){
+  .gallery-masonry{columns:1}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav"><div class="nav-inner">
+  <a href="index.html" class="nav-logo"><img src="images/LOGO.png" alt="МаркинPRO" style="height:40px;width:auto;border-radius:4px"></a>
+  <ul class="nav-links">
+    <li><a href="portfolio.html">Портфолио</a></li>
+    <li><a href="light.html">Свет & Звук</a></li>
+    <li><a href="fx.html" class="active">Спецэффекты</a></li>
+    <li><a href="index.html#pricing">Тарифы</a></li>
+    <li><a href="index.html#faq">FAQ</a></li>
+  </ul>
+  <a href="https://t.me/andreymarkin" class="nav-cta" aria-label="Telegram"><svg><use href="#tg"/></svg></a>
+  <button class="burger" id="burger" aria-label="Открыть меню">
+    <span></span><span></span><span></span>
+  </button>
+</div></header>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Закрыть меню">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <ul class="mobile-menu-links">
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="portfolio.html">Портфолио</a></li>
+    <li><a href="light.html">Свет & Звук</a></li>
+    <li><a href="fx.html" class="active">Спецэффекты</a></li>
+    <li><a href="index.html#pricing">Тарифы</a></li>
+    <li><a href="index.html#faq">FAQ</a></li>
+  </ul>
+  <div class="mobile-menu-cta">
+    <a href="https://t.me/andreymarkin" class="btn btn-gold" style="width:100%">Telegram</a>
+  </div>
+</div>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs><symbol id="tg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></symbol></defs></svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="video-hero">
+  <div class="video-hero-wrap">
+    <iframe src="https://kinescope.io/embed/quXTpb8fiZVnN4jQSAWZPb?autoplay=1&muted=1&loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="video-hero-overlay"></div>
+  <div class="video-hero-content">
+    <h1>Спецэффекты</h1>
+    <p>Эффекты для кульминационных моментов шоу</p>
+  </div>
+</div>
+
+<!-- ═══ STATS ═══ -->
+<div class="hero-stats">
+  <div class="hero-stat">
+    <div class="hero-stat-num">600+</div>
+    <div class="hero-stat-label">Мероприятий</div>
+  </div>
+  <div class="hero-stat">
+    <div class="hero-stat-num">9</div>
+    <div class="hero-stat-label">Видов эффектов</div>
+  </div>
+  <div class="hero-stat">
+    <div class="hero-stat-num">100%</div>
+    <div class="hero-stat-label">Безопасность</div>
+  </div>
+</div>
+
+<!-- ═══ SAFETY ═══ -->
+<section class="safety" id="safetyBlock">
+  <img class="safety-bg" src="images/Spec/Табы/Luxury_event_hall_interior_stage_202606151544.jpeg" alt="Площадка">
+  <div class="safety-overlay"></div>
+  <div class="safety-content">
+    <div class="section-label">Безопасность</div>
+    <h2>Сертифицированное оборудование</h2>
+    <p>Все наши эффекты прошли проверку и разрешены к использованию на площадках по всей России. Мы берём на себя полную ответственность за безопасность.</p>
+    <ul class="safety-list">
+      <li>Полный пакет документов</li>
+      <li>Страхование мероприятия</li>
+      <li>Согласование с площадкой</li>
+      <li>Опытные операторы</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ TABS ═══ -->
+<nav class="tabs-bar" id="tabsBar">
+  <div class="tabs-inner">
+    <button class="tab-btn active" data-tab="smoke">Тяжёлый дым</button>
+    <button class="tab-btn" data-tab="sparkulares">Спаркуляры</button>
+    <button class="tab-btn" data-tab="fountains">Холодные фонтаны</button>
+    <button class="tab-btn" data-tab="pyro">Пиротехника</button>
+    <button class="tab-btn" data-tab="waterfalls">Огнепады и водопады</button>
+    <button class="tab-btn" data-tab="firstdance">Первый танец</button>
+    <button class="tab-btn" data-tab="gender">Гендер пати</button>
+    <button class="tab-btn" data-tab="interactive">Интерактив</button>
+    <button class="tab-btn" data-tab="tech">Техобеспечение</button>
+  </div>
+</nav>
+
+<!-- TAB: Тяжёлый дым -->
+<div class="tab-panel active" id="panel-smoke">
+  <div class="container">
+    <div class="tab-layout">
+      <div class="tab-image"><img src="images/Spec/Табы/01.jpeg" alt="Тяжёлый дым"></div>
+      <div class="tab-text">
+        <h2>Тяжёлый дым</h2>
+        <p class="tab-desc">Атмосферность этого спецэффекта позволяет использовать его на первый танец — словно танец в облаках, а также на различные моменты мероприятия от церемонии до подачи торта и финала. На основе сухого льда!</p>
+        <div class="tab-subtitle">Стоимость</div>
+        <table class="tab-price">
+          <tr><td>Тяжёлый дым</td><td class="price">11 500 ₽</td></tr>
+          <tr><td>Тяжёлый дым + снег</td><td class="price">14 000 ₽</td></tr>
+        </table>
+        <p class="tab-note">*Стоимость с учетом работы специалиста и доставки по Севастополю.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: Спаркуляры -->
+<div class="tab-panel" id="panel-sparkulares">
+  <div class="container">
+    <div class="tab-layout">
+      <div class="tab-image"><img src="images/Spec/Табы/02.jpeg" alt="Спаркуляры"></div>
+      <div class="tab-text">
+        <h2>Спаркуляры</h2>
+        <p class="tab-desc">Спаркуляры — это современная альтернатива традиционным пиротехническим эффектам, которая позволяет создать завораживающее зрелище без риска пожара, дыма и запаха. Эти устройства работают на основе холодных искр, которые абсолютно безопасны для использования как в помещении, так и на открытых площадках. Идеально дополняет любые торжества, будь то свадьба, корпоративное событие, выпускной, концерт или презентация.</p>
+        <div class="tab-subtitle">Стоимость</div>
+        <table class="tab-price">
+          <tr><td>Спаркуляр (1 прибор, запуск 1 мин, на первый танец с тяжёлым дымом)</td><td class="price">1 300 ₽ / шт</td></tr>
+          <tr><td>Отдельно, без тяжёлого дыма (работа специалиста)</td><td class="price">+ 2 500 ₽</td></tr>
+        </table>
+        <p class="tab-note">*Минимальный заказ 4 шт.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: Холодные фонтаны -->
+<div class="tab-panel" id="panel-fountains">
+  <div class="container">
+    <div class="tab-layout">
+      <div class="tab-image"><img src="images/Spec/Табы/03.jpeg" alt="Холодные фонтаны"></div>
+      <div class="tab-text">
+        <h2>Холодные фонтаны</h2>
+        <p class="tab-desc">Холодные фонтаны создают потрясающий визуальный эффект без риска ожога. Идеальны для первого танца, церемоний, подачи торта и финала.</p>
+        <div class="tab-subtitle">Стоимость</div>
+        <table class="tab-price">
+          <tr><td>3м — 30 сек / 60 сек</td><td class="price">1 000 / 1 300 ₽ за 1 шт</td></tr>
+          <tr><td>4м — 25 / 40 / 60 сек</td><td class="price">1 100 / 1 300 / 1 500 ₽ за 1 шт</td></tr>
+          <tr><td>5м — 30 сек / 60 сек</td><td class="price">1 400 / 1 800 ₽ за 1 шт</td></tr>
+        </table>
+        <p class="tab-note">*Минимальный заказ от 8 шт. Стоимость с учетом работы пиротехника и доставки по Севастополю.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: Пиротехника -->
+<div class="tab-panel" id="panel-pyro">
+  <div class="container">
+    <div class="tab-layout">
+      <div class="tab-image"><img src="images/Spec/Табы/04.jpeg" alt="Пиротехника"></div>
+      <div class="tab-text">
+        <h2>Пиротехнические фигуры и комплекты</h2>
+        <p class="tab-desc">Готовые комплекты для различных форматов: от первого танца до масштабного финала. Все цены включают работу специалиста и доставку по Севастополю.</p>
+
+        <div class="tab-subtitle">Комплекты с вертушками</div>
+        <table class="tab-price">
+          <tr><td>1 вертушка + 6 фонтанов</td><td class="price">11 000 ₽ (30 сек)</td></tr>
+          <tr><td>1 вертушка + 6 фонтанов</td><td class="price">12 500 ₽ (60 сек)</td></tr>
+          <tr><td>2 вертушки + 6 фонтанов</td><td class="price">16 500 ₽ (30 сек)</td></tr>
+          <tr><td>2 вертушки + 6 фонтанов</td><td class="price">18 750 ₽ (60 сек)</td></tr>
+        </table>
+
+        <div class="tab-subtitle">Вертушка «Цветок»</div>
+        <table class="tab-price">
+          <tr><td>6 + 6 фонтанов</td><td class="price">11 000 ₽ (30 сек)</td></tr>
+          <tr><td>6 + 6 фонтанов</td><td class="price">12 500 ₽ (60 сек)</td></tr>
+          <tr><td>12 + 6 фонтанов</td><td class="price">16 500 ₽ (30 сек)</td></tr>
+          <tr><td>12 + 6 фонтанов</td><td class="price">18 750 ₽ (60 сек)</td></tr>
+        </table>
+
+        <div class="tab-subtitle">Веерные комплекты</div>
+        <table class="tab-price">
+          <tr><td>Веер на 7 фонтанов + 6 фонтанов</td><td class="price">12 000 ₽ (30 сек)</td></tr>
+          <tr><td>Веер на 7 фонтанов + 6 фонтанов</td><td class="price">13 500 ₽ (60 сек)</td></tr>
+          <tr><td>Веер на 9 фонтанов + 6 фонтанов</td><td class="price">14 000 ₽ (30 сек)</td></tr>
+          <tr><td>Веер на 9 фонтанов + 6 фонтанов</td><td class="price">15 600 ₽ (60 сек)</td></tr>
+        </table>
+
+        <div class="tab-subtitle">Комплекты «Лотос» и «Комбо»</div>
+        <table class="tab-price">
+          <tr><td>2 вертушки «Лотос» + 6 фонтанов</td><td class="price">11 000 ₽ (30 сек)</td></tr>
+          <tr><td>2 вертушки «Лотос» + 6 фонтанов</td><td class="price">12 500 ₽ (60 сек)</td></tr>
+          <tr><td>Комбо: вертушка 1 мин + дорожка 6 шт 4м 1 мин</td><td class="price">14 500 ₽</td></tr>
+        </table>
+        <p class="tab-note">*Возможно большее количество вертушек. Комбинация с 4-метровыми фонтанами возможна с любым комплектом.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: Огнепады и водопады -->
+<div class="tab-panel" id="panel-waterfalls">
+  <div class="container">
+    <div class="tab-layout">
+      <div class="tab-image"><img src="images/Spec/Табы/05.jpeg" alt="Огнепады и водопады"></div>
+      <div class="tab-text">
+        <h2>Огнепады и Водопады</h2>
+        <p class="tab-desc">Масштабные пиротехнические эффекты для кульминационных моментов вашего торжества.</p>
+
+        <div class="tab-subtitle">Огнепады</div>
+        <table class="tab-price">
+          <tr><td>Высота 5м, ширина 5м</td><td class="price">20 000 ₽</td></tr>
+          <tr><td>+ дорожка из 6 фонтанов 3м / 60 сек</td><td class="price">+ 6 300 ₽</td></tr>
+        </table>
+        <p class="tab-note">*Стоимость с учетом работы специалиста и доставки по Севастополю.</p>
+
+        <div class="tab-subtitle">Водопады</div>
+        <table class="tab-price">
+          <tr><td>Водопад из 12 фонтанов</td><td class="price">11 000 ₽ (30 сек)</td></tr>
+          <tr><td>Водопад из 12 фонтанов</td><td class="price">12 500 ₽ (60 сек)</td></tr>
+          <tr><td>Водопад из 12 фонтанов + дорожка 6 фонтанов</td><td class="price">16 000 ₽ (30 сек)</td></tr>
+          <tr><td>Водопад из 12 фонтанов + дорожка 6 фонтанов</td><td class="price">18 750 ₽ (60 сек)</td></tr>
+        </table>
+        <p class="tab-note">*Стоимость с учетом работы специалиста и доставки по Севастополю.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: Первый танец -->
+<div class="tab-panel" id="panel-firstdance">
+  <div class="container">
+    <div class="tab-layout">
+      <div class="tab-image"><img src="images/Spec/Табы/06.jpeg" alt="Эффекты для первого танца"></div>
+      <div class="tab-text">
+        <h2>Эффекты для первого танца и фотосессий</h2>
+        <p class="tab-desc">Специальные эффекты для самых романтичных моментов вашего торжества.</p>
+
+        <div class="tab-subtitle">Генератор Снега</div>
+        <p class="tab-desc">Создаёт мягкое, волшебное «снежное» облако во время первого танца, добавляя моменту сказочную атмосферу и эффектные фото.</p>
+        <table class="tab-price">
+          <tr><td>На первый танец</td><td class="price">5 000 ₽</td></tr>
+        </table>
+        <p class="tab-note">*Стоимость с учетом работы специалиста и доставки по Севастополю.</p>
+
+        <div class="tab-subtitle">Пузыри с Дымом</div>
+        <p class="tab-desc">Мыльные пузыри с лёгким дымом — эффектный и атмосферный акцент для первого танца и фотосессий.</p>
+        <table class="tab-price">
+          <tr><td>На первый танец</td><td class="price">5 000 ₽</td></tr>
+          <tr><td>Фотосессия 15 минут</td><td class="price">8 000 ₽</td></tr>
+        </table>
+        <p class="tab-note">*Стоимость с учетом работы специалиста и доставки по Севастополю.</p>
+
+        <div class="tab-subtitle">Бенгальские огни</div>
+        <p class="tab-desc">Добавят ярких красок и волшебства в каждый кадр. Зажгите в самый романтичный момент!</p>
+        <table class="tab-price">
+          <tr><td>6 шт — горит 2 минуты</td><td class="price">350 ₽</td></tr>
+          <tr><td>3 шт — горит 3 минуты</td><td class="price">450 ₽</td></tr>
+        </table>
+        <p class="tab-note">*Актуальная стоимость по запросу.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: Гендер пати -->
+<div class="tab-panel" id="panel-gender">
+  <div class="container">
+    <div class="tab-layout">
+      <div class="tab-image"><img src="images/Spec/Табы/07.jpeg" alt="Гендер пати"></div>
+      <div class="tab-text">
+        <h2>Всё для Гендер Пати</h2>
+        <p class="tab-desc">Товары для гендер пати: цветной дым, огнетушители, сухой лед, шары и коробки, голос малыша, фотозоны, ведущий, музыкальное сопровождение и т.д.</p>
+
+        <div class="tab-subtitle">Дымные Вспышки</div>
+        <p class="tab-desc">Цветной дым с дистанционным запуском для гендер пати или свадебной церемонии.</p>
+        <p style="font-size:13px;color:var(--gold);margin-bottom:12px">Палитра: жёлтый, оранжевый, белый, зелёный, фиолетовый, красный, синий</p>
+        <table class="tab-price">
+          <tr><td>Дымная вспышка</td><td class="price">1 000 ₽ / шт</td></tr>
+          <tr><td>Работа специалиста (2–7 шт)</td><td class="price">2 500 ₽</td></tr>
+          <tr><td>Работа специалиста (от 8 шт)</td><td class="price">Бесплатно</td></tr>
+        </table>
+
+        <div class="tab-subtitle">Набор для Гендер Пати</div>
+        <p class="tab-desc">Готовый комплект для торжества.</p>
+        <table class="tab-price">
+          <tr><td>Цветной дым 3 шт 1 мин</td><td class="price" rowspan="3" style="vertical-align:middle;font-size:20px">12 950 ₽</td></tr>
+          <tr><td>Дымные вспышки 4 шт</td></tr>
+          <tr><td>2 холодных фонтана 3м 1 мин</td></tr>
+        </table>
+        <p class="tab-note">*Стоимость с учетом работы специалиста и доставки по Севастополю.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: Интерактив -->
+<div class="tab-panel" id="panel-interactive">
+  <div class="container">
+    <div class="tab-layout">
+      <div class="tab-image"><img src="images/Spec/Табы/08.jpeg" alt="Интерактивные зоны"></div>
+      <div class="tab-text">
+        <h2>Интерактивные зоны и оборудование</h2>
+        <p class="tab-desc">Дополнительные развлечения и оборудование для вашего торжества.</p>
+
+        <div class="tab-subtitle">Телефон для пожеланий</div>
+        <p class="tab-desc">Ретро-телефон — это стильная видео и аудио гостевая книга. Гости берут трубку, слышат приветствие и оставляют тёплые слова.</p>
+        <table class="tab-price">
+          <tr><td>Вариант 1 (только аудио запись)</td><td class="price">3 000 ₽</td></tr>
+          <tr><td>Вариант 2 (видео / обзор на празднике)</td><td class="price">6 000 ₽</td></tr>
+          <tr><td>Ассистент гостевой книги (до 6 ч)</td><td class="price">+ 4 000 ₽</td></tr>
+        </table>
+        <p class="tab-note">*Цена за 1 телефон, на 1 вечер. Информация передается ссылкой на облачное хранилище.</p>
+
+        <div class="tab-subtitle">Горка с шампанским</div>
+        <p class="tab-desc">Искрящиеся бокалы, грациозно выстроенные в пирамиду — идеальное сочетание элегантности и роскоши.</p>
+        <table class="tab-price">
+          <tr><td>35 бокалов / 4 бутылки</td><td class="price">9 000 ₽</td></tr>
+          <tr><td>56 бокалов / 6 бутылок</td><td class="price">10 000 ₽</td></tr>
+          <tr><td>84 бокала / 9 бутылок</td><td class="price">11 000 ₽</td></tr>
+          <tr><td>120 бокалов / 13 бутылок</td><td class="price">13 000 ₽</td></tr>
+          <tr><td>165 бокалов / 20 бутылок</td><td class="price">15 000 ₽</td></tr>
+        </table>
+        <p class="tab-note">*В стоимость входит: стол, бокалы, сборка, сухой лёд, работа официанта. Шампанское предоставляется заказчиком.</p>
+
+        <div class="tab-subtitle">Кнопки (Игровые тумбы)</div>
+        <p class="tab-desc">Для любых командных игр и интеллектуальных игр. Система распознания нажатий.</p>
+        <table class="tab-price">
+          <tr><td>2 шт</td><td class="price">6 000 ₽</td></tr>
+          <tr><td>3 шт</td><td class="price">8 000 ₽</td></tr>
+        </table>
+        <p class="tab-note">*Игровая презентация в комплекте.</p>
+
+        <div class="tab-subtitle">Фотоаппарат Instax Mini</div>
+        <p class="tab-desc">Аренда фотоаппарата моментальной печати. Живые эмоции сразу в руках гостей!</p>
+        <table class="tab-price">
+          <tr><td>Instax mini 11</td><td class="price">2 000 ₽</td></tr>
+          <tr><td>Instax mini 12</td><td class="price">2 500 ₽</td></tr>
+          <tr><td>Картриджи 20 кадров</td><td class="price">2 500 ₽</td></tr>
+        </table>
+        <p class="tab-note">*Цена за аренду на одни сутки.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: Техобеспечение -->
+<div class="tab-panel" id="panel-tech">
+  <div class="container">
+    <div class="tab-layout">
+      <div class="tab-image"><img src="images/Spec/Табы/09.jpeg" alt="Техническое обеспечение"></div>
+      <div class="tab-text">
+        <h2>Техническое обеспечение мероприятий</h2>
+        <p class="tab-desc">Наша команда занимается прокатом оборудования для мероприятий любого уровня. Мы предоставляем звук, свет, мультимедиа, аренда шатров, установка сцены, монтаж/демонтаж, трансфер техники по Крыму.</p>
+        <p class="tab-desc">Свяжитесь с нами любым из указанных способов, и мы отправим вам презентацию с готовыми комплектами или произведём индивидуальный просчёт.</p>
+        <div style="margin-top:16px">
+          <a href="https://t.me/andreymarkin" class="btn btn-gold">Написать в Telegram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ GALLERY ═══ -->
+<section class="gallery-section section-border" id="gallery">
+  <div class="container">
+    <div class="section-label" data-anim="fade-up">Портфолио</div>
+    <h2 class="section-title" data-anim="fade-up">Наши работы</h2>
+    <div class="gallery-masonry" id="galleryGrid">
+      <div class="gallery-item" data-type="photo" onclick="openGalleryLightbox(this)">
+        <img src="images/Spec/IMG_0130.JPG" alt="Спецэффекты" loading="lazy">
+        <div class="gallery-overlay"><div class="gallery-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
+      </div>
+      <div class="gallery-item" data-type="video" onclick="openGalleryLightbox(this)">
+        <video muted loop playsinline preload="metadata" poster="images/Spec/IMG_5181_poster.jpg"><source src="https://res.cloudinary.com/dqufkjjbz/video/upload/v1781621958/markin/fx/IMG_5181.mp4" type="video/mp4"></video>
+        <div class="gallery-overlay"><div class="gallery-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </div>
+      <div class="gallery-item" data-type="photo" onclick="openGalleryLightbox(this)">
+        <img src="images/Spec/IMG_0132.JPG" alt="Спецэффекты" loading="lazy">
+        <div class="gallery-overlay"><div class="gallery-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
+      </div>
+      <div class="gallery-item" data-type="video" onclick="openGalleryLightbox(this)">
+        <video muted loop playsinline preload="metadata" poster="images/Spec/IMG_5528_poster.jpg"><source src="https://res.cloudinary.com/dqufkjjbz/video/upload/v1781622106/markin/fx/IMG_5528.mp4" type="video/mp4"></video>
+        <div class="gallery-overlay"><div class="gallery-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </div>
+      <div class="gallery-item" data-type="photo" onclick="openGalleryLightbox(this)">
+        <img src="images/Spec/IMG_0140.JPG" alt="Спецэффекты" loading="lazy">
+        <div class="gallery-overlay"><div class="gallery-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
+      </div>
+      <div class="gallery-item" data-type="video" onclick="openGalleryLightbox(this)">
+        <video muted loop playsinline preload="metadata" poster="images/Spec/IMG_7184_poster.jpg"><source src="https://res.cloudinary.com/dqufkjjbz/video/upload/v1781622228/markin/fx/IMG_7184.mp4" type="video/mp4"></video>
+        <div class="gallery-overlay"><div class="gallery-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </div>
+      <div class="gallery-item" data-type="photo" onclick="openGalleryLightbox(this)">
+        <img src="images/Spec/IMG_2811.JPG" alt="Спецэффекты" loading="lazy">
+        <div class="gallery-overlay"><div class="gallery-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
+      </div>
+      <div class="gallery-item" data-type="video" onclick="openGalleryLightbox(this)">
+        <video muted loop playsinline preload="metadata" poster="images/Spec/IMG_7408_poster.jpg"><source src="https://res.cloudinary.com/dqufkjjbz/video/upload/v1781622334/markin/fx/IMG_7408.mp4" type="video/mp4"></video>
+        <div class="gallery-overlay"><div class="gallery-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </div>
+      <div class="gallery-item" data-type="photo" onclick="openGalleryLightbox(this)">
+        <img src="images/Spec/IMG_5557-1.jpg" alt="Спецэффекты" loading="lazy">
+        <div class="gallery-overlay"><div class="gallery-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
+      </div>
+      <div class="gallery-item" data-type="video" onclick="openGalleryLightbox(this)">
+        <video muted loop playsinline preload="metadata" poster="images/Spec/gender_poster.jpg"><source src="https://res.cloudinary.com/dqufkjjbz/video/upload/v1781622394/markin/fx/gender-party.mp4" type="video/mp4"></video>
+        <div class="gallery-overlay"><div class="gallery-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </div>
+      <div class="gallery-item" data-type="photo" onclick="openGalleryLightbox(this)">
+        <img src="images/Spec/photo_2026-04-23 22.00.17.jpeg" alt="Спецэффекты" loading="lazy">
+        <div class="gallery-overlay"><div class="gallery-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="galleryLightbox" onclick="closeGalleryLightbox()">
+  <button class="lightbox-close" onclick="event.stopPropagation();closeGalleryLightbox()">&times;</button>
+  <button class="lightbox-nav" onclick="event.stopPropagation();galleryNav(-1)">&#8249;</button>
+  <div id="galleryLightboxContent"></div>
+  <button class="lightbox-nav lightbox-nav-r" onclick="event.stopPropagation();galleryNav(1)">&#8250;</button>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<section class="section section-border"><div class="container" style="text-align:center">
+  <div class="section-label" style="justify-content:center" data-anim="fade-up">Обсудить спецэффекты</div>
+  <h2 class="section-title" style="margin:0 auto 16px;text-align:center;max-width:600px" data-anim="fade-up">Создадим идеальное шоу для вашего события</h2>
+  <p class="section-subtitle" style="margin:0 auto 40px;text-align:center" data-anim="fade-up">Расскажите нам о вашем мероприятии, и мы подберём идеальную комбинацию эффектов под ваш бюджет и площадку.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap" data-anim="fade-up">
+    <a href="https://t.me/andreymarkin" class="btn btn-gold"><svg width="16" height="16" fill="currentColor"><use href="#tg"/></svg> Написать в Telegram</a>
+    <a href="tel:+79785557545" class="btn btn-ghost">+7 (978) 555 75 45</a>
+  </div>
+</div></section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div><img src="images/LOGO.png" alt="МаркинPRO" style="height:40px;width:auto;border-radius:4px"><a href="tel:+79785557545" class="footer-phone">+7 (978) 555 75 45</a></div>
+    <a href="https://t.me/andreymarkin" class="btn btn-ghost"><svg width="18" height="18" fill="currentColor"><use href="#tg"/></svg> Telegram</a>
+    <div class="footer-copy">© 2026 Андрей Маркин.<br>Режиссура событий премиум-класса.</div>
+  </div>
+</div></footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Nav show on scroll
+let lastScroll=0;
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('nav');
+  if(window.scrollY>100)nav.classList.add('visible');
+  else nav.classList.remove('visible');
+  lastScroll=window.scrollY;
+});
+
+// Animations
+document.querySelectorAll('[data-anim="fade-up"]').forEach((el,i)=>{
+  gsap.fromTo(el,{opacity:0,y:50},{opacity:1,y:0,duration:0.8,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 88%'}})
+});
+document.querySelectorAll('[data-anim="fade-left"]').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,x:60},{opacity:1,x:0,duration:1,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 85%'}})
+});
+
+// Tabs
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-'+btn.dataset.tab).classList.add('active');
+    window.scrollTo({top:document.getElementById('tabsBar').offsetTop-72,behavior:'smooth'});
+  });
+});
+
+// Gallery Lightbox
+let galleryItems=[],galleryIdx=0;
+function openGalleryLightbox(el){
+  galleryItems=[...document.querySelectorAll('.gallery-item')];
+  galleryIdx=galleryItems.indexOf(el);
+  renderGalleryItem();
+  document.getElementById('galleryLightbox').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeGalleryLightbox(){
+  const lb=document.getElementById('galleryLightbox');
+  const content=document.getElementById('galleryLightboxContent');
+  const video=content.querySelector('video');
+  if(video){video.pause();video.src=''}
+  lb.classList.remove('active');
+  document.body.style.overflow='';
+}
+function renderGalleryItem(){
+  const content=document.getElementById('galleryLightboxContent');
+  const item=galleryItems[galleryIdx];
+  const type=item.dataset.type;
+  content.innerHTML='';
+  if(type==='video'){
+    const src=item.querySelector('video source')?.src;
+    if(src){
+      const v=document.createElement('video');
+      v.src=src;v.controls=true;v.autoplay=true;v.style.maxWidth='90vw';v.style.maxHeight='90vh';
+      content.appendChild(v);
+    }
+  }else{
+    const img=item.querySelector('img');
+    if(img){
+      const i=document.createElement('img');
+      i.src=img.src;i.alt=img.alt;
+      content.appendChild(i);
+    }
+  }
+}
+function galleryNav(dir){
+  const video=document.getElementById('galleryLightboxContent').querySelector('video');
+  if(video){video.pause();video.src=''}
+  galleryIdx=(galleryIdx+dir+galleryItems.length)%galleryItems.length;
+  renderGalleryItem();
+}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('galleryLightbox').classList.contains('active'))return;
+  if(e.key==='Escape')closeGalleryLightbox();
+  if(e.key==='ArrowRight')galleryNav(1);
+  if(e.key==='ArrowLeft')galleryNav(-1);
+});
+
+// Mobile: disable animations
+if(window.innerWidth<=768){
+  document.querySelectorAll('[data-anim]').forEach(el=>{
+    el.style.opacity='1';
+    el.style.transform='none';
+  });
+}
+
+// ═══ MOBILE BURGER MENU ═══
+(function(){
+  const burger=document.getElementById('burger');
+  const menu=document.getElementById('mobileMenu');
+  const close=document.getElementById('mobileMenuClose');
+  if(!burger||!menu)return;
+  burger.addEventListener('click',()=>{burger.classList.toggle('active');menu.classList.toggle('open');document.body.style.overflow=menu.classList.contains('open')?'hidden':''});
+  close.addEventListener('click',()=>{burger.classList.remove('active');menu.classList.remove('open');document.body.style.overflow=''});
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('active');menu.classList.remove('open');document.body.style.overflow=''}));
+})();
+
+</script>
+</body>
+</html>

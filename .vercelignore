@@ -1,0 +1,17 @@
+# Large video files
+*.mov
+*.MOV
+*.mp4
+*.MP4
+
+# Source image folder (not referenced by HTML)
+image/
+
+# Git and tooling
+.git/
+node_modules/
+.agents/
+*.log
+
+# Backup / wireframe files
+markin_wireframe.html

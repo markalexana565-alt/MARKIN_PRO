@@ -1,0 +1,11 @@
+.vercel
+node_modules
+images/Spec/
+images/couples/
+images/Svet/
+images/all/
+video/
+video-compressed/
+image/
+Portfolio/
+bento-portfolio/

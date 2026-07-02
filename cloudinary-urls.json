@@ -1,0 +1,109 @@
+[
+  {
+    "local": "images/Spec/IMG_5181.mov",
+    "folder": "markin/fx",
+    "public_id": "IMG_5181",
+    "dur": 24,
+    "url": "https://res.cloudinary.com/dqufkjjbz/video/upload/v1781621958/markin/fx/IMG_5181.mp4"
+  },
+  {
+    "local": "images/Spec/IMG_5528.mov",
+    "folder": "markin/fx",
+    "public_id": "IMG_5528",
+    "dur": 27,
+    "url": "https://res.cloudinary.com/dqufkjjbz/video/upload/v1781622106/markin/fx/IMG_5528.mp4"
+  },
+  {
+    "local": "images/Spec/IMG_7184.MOV",
+    "folder": "markin/fx",
+    "public_id": "IMG_7184",
+    "dur": 28,
+    "url": "https://res.cloudinary.com/dqufkjjbz/video/upload/v1781622228/markin/fx/IMG_7184.mp4"
+  },
+  {
+    "local": "images/Spec/IMG_7408.mov",
+    "folder": "markin/fx",
+    "public_id": "IMG_7408",
+    "dur": 18,
+    "url": "https://res.cloudinary.com/dqufkjjbz/video/upload/v1781622334/markin/fx/IMG_7408.mp4"
+  },
+  {
+    "local": "images/Spec/гендер пати.MOV",
+    "folder": "markin/fx",
+    "public_id": "gender-party",
+    "dur": 19,
+    "url": "https://res.cloudinary.com/dqufkjjbz/video/upload/v1781622394/markin/fx/gender-party.mp4"
+  },
+  {
+    "local": "video/effects.mp4",
+    "folder": "markin/hero",
+    "public_id": "effects",
+    "dur": 8,
+    "url": "https://res.cloudinary.com/dqufkjjbz/video/upload/v1781622438/markin/hero/effects.mp4",
+    "error": null
+  },
+  {
+    "local": "video/Fog_and_smoke.mp4",
+    "folder": "markin/hero",
+    "public_id": "fog-and-smoke",
+    "dur": 8,
+    "url": "https://res.cloudinary.com/dqufkjjbz/video/upload/v1781622579/markin/hero/fog-and-smoke.mp4",
+    "error": null
+  },
+  {
+    "local": "images/Svet/IMG_9541.mp4",
+    "folder": "markin/light",
+    "public_id": "IMG_9541",
+    "dur": 26,
+    "url": "https://res.cloudinary.com/dqufkjjbz/video/upload/v1781622593/markin/light/IMG_9541.mp4",
+    "error": null
+  },
+  {
+    "local": "images/couples/arseniy-agnessa/IMG_9613.MOV",
+    "folder": "markin/portfolio",
+    "public_id": "arseniy-9613",
+    "dur": 35,
+    "url": "https://res.cloudinary.com/dqufkjjbz/video/upload/v1781622753/markin/portfolio/arseniy-9613.mp4",
+    "error": null
+  },
+  {
+    "local": "images/couples/arseniy-agnessa/IMG_9621.MOV",
+    "folder": "markin/portfolio",
+    "public_id": "arseniy-9621",
+    "dur": 14,
+    "url": "https://res.cloudinary.com/dqufkjjbz/video/upload/v1781622880/markin/portfolio/arseniy-9621.mp4",
+    "error": null
+  },
+  {
+    "local": "images/couples/arseniy-agnessa/IMG_9675.MOV",
+    "folder": "markin/portfolio",
+    "public_id": "arseniy-9675",
+    "dur": 25,
+    "url": "https://res.cloudinary.com/dqufkjjbz/video/upload/v1781623093/markin/portfolio/arseniy-9675.mp4",
+    "error": null
+  },
+  {
+    "local": "images/couples/artem-anastasiya/IMG_9909.MOV",
+    "folder": "markin/portfolio",
+    "public_id": "artem-9909",
+    "dur": 79,
+    "url": "https://res.cloudinary.com/dqufkjjbz/video/upload/v1781623303/markin/portfolio/artem-9909.mp4",
+    "error": null
+  },
+  {
+    "local": "images/couples/nikita-darya/IMG_9908.MP4",
+    "folder": "markin/portfolio",
+    "public_id": "nikita-9908",
+    "dur": 119,
+    "url": "https://res.cloudinary.com/dqufkjjbz/video/upload/v1781623569/markin/portfolio/nikita-9908.mp4",
+    "error": null
+  },
+  {
+    "local": "images/all/IMG_9541.mp4",
+    "folder": "markin/portfolio",
+    "public_id": "IMG_9541-all",
+    "dur": 26,
+    "url": "https://res.cloudinary.com/dqufkjjbz/video/upload/v1781623629/markin/portfolio/IMG_9541-all.mp4",
+    "error": null
+  }
+]
