@@ -93,9 +93,10 @@ img{display:block}
 .price-note{font-size:12px;color:var(--text-muted);margin-top:16px;line-height:1.7;font-style:italic}
 
 /* ═══ TABS ═══ */
-.tabs-bar{background:var(--bg-card);border-bottom:1px solid var(--gold-dim);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.tabs-bar::-webkit-scrollbar{display:none}
-.tabs-inner{max-width:1320px;margin:0 auto;padding:0 48px;display:flex;flex-wrap:nowrap;justify-content:center;gap:0;white-space:nowrap}
+.tabs-bar{background:var(--bg-card);border-bottom:1px solid var(--gold-dim)}
+.tabs-inner{margin:0 auto;padding:0 48px;display:flex;flex-wrap:nowrap;justify-content:center;gap:0;white-space:nowrap}
+.tabs-select{display:none;width:100%;max-width:600px;margin:0 auto;padding:12px 20px;background:var(--bg-card);color:var(--gold);border:1px solid var(--gold-dim);border-radius:var(--radius);font-family:'Oswald',sans-serif;font-size:14px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A24B' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;cursor:pointer}
+.tabs-select option{background:var(--bg-card);color:var(--text);text-transform:none;letter-spacing:normal}
 .tab-btn{font-family:'Oswald',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);background:none;border:none;border-bottom:2px solid transparent;padding:0 24px;height:48px;cursor:pointer;transition:color 0.3s,border-color 0.3s;flex-shrink:0;white-space:nowrap;display:flex;align-items:center}
 .tab-btn:hover{color:var(--text)}
 .tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
@@ -106,7 +107,7 @@ img{display:block}
 .safety-content .section-label{justify-content:center}
 .safety-content h2{font-size:48px;color:var(--text);margin-bottom:20px}
 .safety-content p{font-size:16px;color:var(--text-dim);margin-bottom:48px;line-height:1.8}
-.safety-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;list-style:none}
+.safety-list{display:flex;flex-wrap:nowrap;gap:12px;list-style:none;justify-content:center}
 .safety-list li{background:rgba(11,11,13,0.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,162,75,0.2);border-radius:8px;padding:12px 20px;display:flex;align-items:center;gap:8px;font-size:13px;font-family:'Montserrat',sans-serif;color:var(--text);white-space:nowrap;justify-content:center}
 .safety-list li::before{content:'✦';color:var(--gold);font-size:10px}
 .tab-panel{display:none;padding:100px 0}
@@ -182,6 +183,24 @@ img{display:block}
 .mobile-menu-close svg{width:24px;height:24px;stroke:#8E8E93;stroke-width:2;fill:none}
 .mobile-menu .mobile-menu-cta{margin-top:auto;padding-top:32px}
 
+.footer{border-top:1px solid var(--gold-dim);padding:60px 0}
+.footer-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:40px;align-items:center}
+.footer-phone{font-size:15px;color:var(--text-dim);transition:color 0.3s;margin-top:8px;display:block}
+.footer-phone:hover{color:var(--gold)}
+.footer-social{display:flex;gap:12px;align-items:center}
+.footer-copy{font-size:12px;color:var(--text-muted);text-align:right;line-height:1.7}
+
+/* ═══ TABLET ═══ */
+@media(max-width:1300px){
+  .tabs-inner{display:none}
+  .tabs-select{display:block;margin:12px auto}
+  .safety{height:auto;padding:80px 0}
+  .safety-content{padding:0 32px}
+  .safety-content h2{font-size:36px}
+  .safety-list{flex-wrap:wrap;justify-content:center}
+  .safety-list li{font-size:12px;padding:10px 16px}
+}
+
 /* ═══ MOBILE ═══ */
 @media(max-width:768px){
   .container{padding:0 20px}
@@ -206,12 +225,14 @@ img{display:block}
   .safety-content h2{font-size:28px}
   .safety-list{grid-template-columns:1fr;gap:10px}
   .safety-list li{font-size:12px;padding:10px 16px}
-  .tabs-inner{padding:0 20px;justify-content:flex-start}
-  .tab-btn{font-size:12px;padding:0 16px;height:44px}
+  .tabs-inner{padding:0 20px;justify-content:flex-start;gap:0}
+  .tab-btn{font-size:11px;padding:0 12px;height:44px}
   .feature-grid,.dual-grid{grid-template-columns:1fr;gap:40px}
   .fx-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr;text-align:center}
+  .footer-grid>div:first-child{display:flex;flex-direction:column;align-items:center}
   .footer-copy{text-align:center}
+  .footer-social{justify-content:center}
   .category-num{font-size:48px}
   .price-table td{font-size:13px;padding:12px 0}
   .gallery-masonry{columns:2;column-gap:12px}
@@ -260,7 +281,7 @@ img{display:block}
     <a href="https://t.me/andreymarkin" class="btn btn-gold" style="width:100%">Telegram</a>
   </div>
 </div>
-<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs><symbol id="tg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></symbol></defs></svg>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs><symbol id="tg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></symbol><symbol id="yt" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.546 12 3.546 12 3.546s-7.505 0-9.377.504A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.504 9.376.504 9.376.504s7.505 0 9.377-.504a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></symbol><symbol id="vk" viewBox="0 0 24 24"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.391 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.678.864 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.204.17-.407.44-.407h2.744c.373 0 .508.203.508.644v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.15-3.574 2.15-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.644-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.78 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></symbol></defs></svg>
 
 <!-- ═══ HERO ═══ -->
 <div class="video-hero">
@@ -277,16 +298,16 @@ img{display:block}
 <!-- ═══ STATS ═══ -->
 <div class="hero-stats">
   <div class="hero-stat">
-    <div class="hero-stat-num">600+</div>
+    <div class="hero-stat-num">400+</div>
     <div class="hero-stat-label">Мероприятий</div>
   </div>
   <div class="hero-stat">
-    <div class="hero-stat-num">9</div>
+    <div class="hero-stat-num">11</div>
     <div class="hero-stat-label">Видов эффектов</div>
   </div>
   <div class="hero-stat">
     <div class="hero-stat-num">100%</div>
-    <div class="hero-stat-label">Безопасность</div>
+    <div class="hero-stat-label">Вау Эффект</div>
   </div>
 </div>
 
@@ -297,10 +318,9 @@ img{display:block}
   <div class="safety-content">
     <div class="section-label">Безопасность</div>
     <h2>Сертифицированное оборудование</h2>
-    <p>Все наши эффекты прошли проверку и разрешены к использованию на площадках по всей России. Мы берём на себя полную ответственность за безопасность.</p>
+    <p>Все наши эффекты прошли проверку и разрешены к использованию на площадках по всей России.</p>
     <ul class="safety-list">
       <li>Полный пакет документов</li>
-      <li>Страхование мероприятия</li>
       <li>Согласование с площадкой</li>
       <li>Опытные операторы</li>
     </ul>
@@ -309,12 +329,23 @@ img{display:block}
 
 <!-- ═══ TABS ═══ -->
 <nav class="tabs-bar" id="tabsBar">
+  <select class="tabs-select" id="tabsSelect">
+    <option value="smoke">Тяжёлый дым</option>
+    <option value="sparkulares">Спаркуляры</option>
+    <option value="fountains">Холодные фонтаны</option>
+    <option value="pyro">Пиротехника</option>
+    <option value="waterfalls">Огнепады и «Водопады»</option>
+    <option value="firstdance">Первый танец</option>
+    <option value="gender">Гендер пати</option>
+    <option value="interactive">Интерактив</option>
+    <option value="tech">Техобеспечение</option>
+  </select>
   <div class="tabs-inner">
     <button class="tab-btn active" data-tab="smoke">Тяжёлый дым</button>
     <button class="tab-btn" data-tab="sparkulares">Спаркуляры</button>
     <button class="tab-btn" data-tab="fountains">Холодные фонтаны</button>
     <button class="tab-btn" data-tab="pyro">Пиротехника</button>
-    <button class="tab-btn" data-tab="waterfalls">Огнепады и водопады</button>
+    <button class="tab-btn" data-tab="waterfalls">Огнепады и «Водопады»</button>
     <button class="tab-btn" data-tab="firstdance">Первый танец</button>
     <button class="tab-btn" data-tab="gender">Гендер пати</button>
     <button class="tab-btn" data-tab="interactive">Интерактив</button>
@@ -334,6 +365,7 @@ img{display:block}
         <table class="tab-price">
           <tr><td>Тяжёлый дым</td><td class="price">11 500 ₽</td></tr>
           <tr><td>Тяжёлый дым + снег</td><td class="price">14 000 ₽</td></tr>
+          <tr><td>Тяжёлый дым + дымные пузыри</td><td class="price">15 000 ₽</td></tr>
         </table>
         <p class="tab-note">*Стоимость с учетом работы специалиста и доставки по Севастополю.</p>
       </div>
@@ -351,7 +383,7 @@ img{display:block}
         <p class="tab-desc">Спаркуляры — это современная альтернатива традиционным пиротехническим эффектам, которая позволяет создать завораживающее зрелище без риска пожара, дыма и запаха. Эти устройства работают на основе холодных искр, которые абсолютно безопасны для использования как в помещении, так и на открытых площадках. Идеально дополняет любые торжества, будь то свадьба, корпоративное событие, выпускной, концерт или презентация.</p>
         <div class="tab-subtitle">Стоимость</div>
         <table class="tab-price">
-          <tr><td>Спаркуляр (1 прибор, запуск 1 мин, на первый танец с тяжёлым дымом)</td><td class="price">1 300 ₽ / шт</td></tr>
+          <tr><td>Спаркуляр (1 прибор, запуск 1 мин, на первый танец с тяжёлым дымом)</td><td class="price">1 400 ₽ / шт</td></tr>
           <tr><td>Отдельно, без тяжёлого дыма (работа специалиста)</td><td class="price">+ 2 500 ₽</td></tr>
         </table>
         <p class="tab-note">*Минимальный заказ 4 шт.</p>
@@ -371,8 +403,9 @@ img{display:block}
         <div class="tab-subtitle">Стоимость</div>
         <table class="tab-price">
           <tr><td>3м — 30 сек / 60 сек</td><td class="price">1 000 / 1 300 ₽ за 1 шт</td></tr>
-          <tr><td>4м — 25 / 40 / 60 сек</td><td class="price">1 100 / 1 300 / 1 500 ₽ за 1 шт</td></tr>
+          <tr><td>4м — 25 / 40 / 60 сек</td><td class="price">1 100 / 1 350 / 1 550 ₽ за 1 шт</td></tr>
           <tr><td>5м — 30 сек / 60 сек</td><td class="price">1 400 / 1 800 ₽ за 1 шт</td></tr>
+          <tr><td>Заказ меньше 8 шт (работа пиротехника)</td><td class="price">+ 2 500 ₽</td></tr>
         </table>
         <p class="tab-note">*Минимальный заказ от 8 шт. Стоимость с учетом работы пиротехника и доставки по Севастополю.</p>
       </div>
@@ -391,35 +424,36 @@ img{display:block}
 
         <div class="tab-subtitle">Комплекты с вертушками</div>
         <table class="tab-price">
-          <tr><td>1 вертушка + 6 фонтанов</td><td class="price">11 000 ₽ (30 сек)</td></tr>
-          <tr><td>1 вертушка + 6 фонтанов</td><td class="price">12 500 ₽ (60 сек)</td></tr>
+          <tr><td>1 вертушка + 6 фонтанов</td><td class="price">11 500 ₽ (30 сек)</td></tr>
+          <tr><td>1 вертушка + 6 фонтанов</td><td class="price">12 900 ₽ (60 сек)</td></tr>
           <tr><td>2 вертушки + 6 фонтанов</td><td class="price">16 500 ₽ (30 сек)</td></tr>
-          <tr><td>2 вертушки + 6 фонтанов</td><td class="price">18 750 ₽ (60 сек)</td></tr>
+          <tr><td>2 вертушки + 6 фонтанов</td><td class="price">18 900 ₽ (60 сек)</td></tr>
         </table>
 
         <div class="tab-subtitle">Вертушка «Цветок»</div>
         <table class="tab-price">
-          <tr><td>6 + 6 фонтанов</td><td class="price">11 000 ₽ (30 сек)</td></tr>
-          <tr><td>6 + 6 фонтанов</td><td class="price">12 500 ₽ (60 сек)</td></tr>
+          <tr><td>6 + 6 фонтанов</td><td class="price">11 500 ₽ (30 сек)</td></tr>
+          <tr><td>6 + 6 фонтанов</td><td class="price">12 900 ₽ (60 сек)</td></tr>
           <tr><td>12 + 6 фонтанов</td><td class="price">16 500 ₽ (30 сек)</td></tr>
-          <tr><td>12 + 6 фонтанов</td><td class="price">18 750 ₽ (60 сек)</td></tr>
+          <tr><td>12 + 6 фонтанов</td><td class="price">18 900 ₽ (60 сек)</td></tr>
         </table>
+        <p class="tab-note">*Стоимость с учетом работы специалиста и доставки по Севастополю.</p>
 
         <div class="tab-subtitle">Веерные комплекты</div>
         <table class="tab-price">
-          <tr><td>Веер на 7 фонтанов + 6 фонтанов</td><td class="price">12 000 ₽ (30 сек)</td></tr>
-          <tr><td>Веер на 7 фонтанов + 6 фонтанов</td><td class="price">13 500 ₽ (60 сек)</td></tr>
-          <tr><td>Веер на 9 фонтанов + 6 фонтанов</td><td class="price">14 000 ₽ (30 сек)</td></tr>
-          <tr><td>Веер на 9 фонтанов + 6 фонтанов</td><td class="price">15 600 ₽ (60 сек)</td></tr>
+          <tr><td>Веер на 7 фонтанов + 6 фонтанов</td><td class="price">12 500 ₽ (30 сек)</td></tr>
+          <tr><td>Веер на 7 фонтанов + 6 фонтанов</td><td class="price">13 900 ₽ (60 сек)</td></tr>
+          <tr><td>Веер на 9 фонтанов + 6 фонтанов</td><td class="price">14 500 ₽ (30 сек)</td></tr>
+          <tr><td>Веер на 9 фонтанов + 6 фонтанов</td><td class="price">15 900 ₽ (60 сек)</td></tr>
         </table>
 
         <div class="tab-subtitle">Комплекты «Лотос» и «Комбо»</div>
         <table class="tab-price">
-          <tr><td>2 вертушки «Лотос» + 6 фонтанов</td><td class="price">11 000 ₽ (30 сек)</td></tr>
-          <tr><td>2 вертушки «Лотос» + 6 фонтанов</td><td class="price">12 500 ₽ (60 сек)</td></tr>
-          <tr><td>Комбо: вертушка 1 мин + дорожка 6 шт 4м 1 мин</td><td class="price">14 500 ₽</td></tr>
+          <tr><td>2 вертушки «Лотос» + 6 фонтанов</td><td class="price">11 500 ₽ (30 сек)</td></tr>
+          <tr><td>2 вертушки «Лотос» + 6 фонтанов</td><td class="price">12 900 ₽ (60 сек)</td></tr>
+          <tr><td>Комбо: вертушка 1 мин + дорожка 6 шт 4м 1 мин</td><td class="price">15 350 ₽</td></tr>
         </table>
-        <p class="tab-note">*Возможно большее количество вертушек. Комбинация с 4-метровыми фонтанами возможна с любым комплектом.</p>
+        <p class="tab-note">*Возможно большее количество вертушек. Комбинация с 4-метровыми фонтанами возможна с любым комплектом. По запросу можно собрать разные комплектации с любой высотой от 2-6 метров.</p>
       </div>
     </div>
   </div>
@@ -431,22 +465,22 @@ img{display:block}
     <div class="tab-layout">
       <div class="tab-image"><img src="images/Spec/Табы/05.jpeg" alt="Огнепады и водопады"></div>
       <div class="tab-text">
-        <h2>Огнепады и Водопады</h2>
+        <h2>Огнепады и «Водопады»</h2>
         <p class="tab-desc">Масштабные пиротехнические эффекты для кульминационных моментов вашего торжества.</p>
 
         <div class="tab-subtitle">Огнепады</div>
         <table class="tab-price">
-          <tr><td>Высота 5м, ширина 5м</td><td class="price">20 000 ₽</td></tr>
+          <tr><td>Высота 5м, ширина 5м</td><td class="price">21 000 ₽</td></tr>
           <tr><td>+ дорожка из 6 фонтанов 3м / 60 сек</td><td class="price">+ 6 300 ₽</td></tr>
         </table>
         <p class="tab-note">*Стоимость с учетом работы специалиста и доставки по Севастополю.</p>
 
         <div class="tab-subtitle">Водопады</div>
         <table class="tab-price">
-          <tr><td>Водопад из 12 фонтанов</td><td class="price">11 000 ₽ (30 сек)</td></tr>
-          <tr><td>Водопад из 12 фонтанов</td><td class="price">12 500 ₽ (60 сек)</td></tr>
-          <tr><td>Водопад из 12 фонтанов + дорожка 6 фонтанов</td><td class="price">16 000 ₽ (30 сек)</td></tr>
-          <tr><td>Водопад из 12 фонтанов + дорожка 6 фонтанов</td><td class="price">18 750 ₽ (60 сек)</td></tr>
+          <tr><td>Водопад из 12 фонтанов</td><td class="price">11 500 ₽ (30 сек)</td></tr>
+          <tr><td>Водопад из 12 фонтанов</td><td class="price">12 900 ₽ (60 сек)</td></tr>
+          <tr><td>Водопад из 12 фонтанов + дорожка 6 фонтанов</td><td class="price">16 500 ₽ (30 сек)</td></tr>
+          <tr><td>Водопад из 12 фонтанов + дорожка 6 фонтанов</td><td class="price">18 900 ₽ (60 сек)</td></tr>
         </table>
         <p class="tab-note">*Стоимость с учетом работы специалиста и доставки по Севастополю.</p>
       </div>
@@ -466,14 +500,14 @@ img{display:block}
         <div class="tab-subtitle">Генератор Снега</div>
         <p class="tab-desc">Создаёт мягкое, волшебное «снежное» облако во время первого танца, добавляя моменту сказочную атмосферу и эффектные фото.</p>
         <table class="tab-price">
-          <tr><td>На первый танец</td><td class="price">5 000 ₽</td></tr>
+          <tr><td>На первый танец</td><td class="price">5 500 ₽</td></tr>
         </table>
         <p class="tab-note">*Стоимость с учетом работы специалиста и доставки по Севастополю.</p>
 
         <div class="tab-subtitle">Пузыри с Дымом</div>
         <p class="tab-desc">Мыльные пузыри с лёгким дымом — эффектный и атмосферный акцент для первого танца и фотосессий.</p>
         <table class="tab-price">
-          <tr><td>На первый танец</td><td class="price">5 000 ₽</td></tr>
+          <tr><td>На первый танец</td><td class="price">5 500 ₽</td></tr>
           <tr><td>Фотосессия 15 минут</td><td class="price">8 000 ₽</td></tr>
         </table>
         <p class="tab-note">*Стоимость с учетом работы специалиста и доставки по Севастополю.</p>
@@ -511,9 +545,9 @@ img{display:block}
         <div class="tab-subtitle">Набор для Гендер Пати</div>
         <p class="tab-desc">Готовый комплект для торжества.</p>
         <table class="tab-price">
-          <tr><td>Цветной дым 3 шт 1 мин</td><td class="price" rowspan="3" style="vertical-align:middle;font-size:20px">12 950 ₽</td></tr>
+          <tr><td>Цветной дым 3 шт 1 мин</td></tr>
           <tr><td>Дымные вспышки 4 шт</td></tr>
-          <tr><td>2 холодных фонтана 3м 1 мин</td></tr>
+          <tr><td>2 холодных фонтана 3м 1 мин</td><td class="price" style="font-size:20px">13 500 ₽</td></tr>
         </table>
         <p class="tab-note">*Стоимость с учетом работы специалиста и доставки по Севастополю.</p>
       </div>
@@ -534,7 +568,7 @@ img{display:block}
         <p class="tab-desc">Ретро-телефон — это стильная видео и аудио гостевая книга. Гости берут трубку, слышат приветствие и оставляют тёплые слова.</p>
         <table class="tab-price">
           <tr><td>Вариант 1 (только аудио запись)</td><td class="price">3 000 ₽</td></tr>
-          <tr><td>Вариант 2 (видео / обзор на празднике)</td><td class="price">6 000 ₽</td></tr>
+          <tr><td>Вариант 2 (Запись видео с аудио)</td><td class="price">6 000 ₽</td></tr>
           <tr><td>Ассистент гостевой книги (до 6 ч)</td><td class="price">+ 4 000 ₽</td></tr>
         </table>
         <p class="tab-note">*Цена за 1 телефон, на 1 вечер. Информация передается ссылкой на облачное хранилище.</p>
@@ -542,11 +576,11 @@ img{display:block}
         <div class="tab-subtitle">Горка с шампанским</div>
         <p class="tab-desc">Искрящиеся бокалы, грациозно выстроенные в пирамиду — идеальное сочетание элегантности и роскоши.</p>
         <table class="tab-price">
-          <tr><td>35 бокалов / 4 бутылки</td><td class="price">9 000 ₽</td></tr>
-          <tr><td>56 бокалов / 6 бутылок</td><td class="price">10 000 ₽</td></tr>
-          <tr><td>84 бокала / 9 бутылок</td><td class="price">11 000 ₽</td></tr>
-          <tr><td>120 бокалов / 13 бутылок</td><td class="price">13 000 ₽</td></tr>
-          <tr><td>165 бокалов / 20 бутылок</td><td class="price">15 000 ₽</td></tr>
+          <tr><td>35 бокалов / 4 бутылки</td><td class="price">9 500 ₽</td></tr>
+          <tr><td>56 бокалов / 6 бутылок</td><td class="price">10 500 ₽</td></tr>
+          <tr><td>84 бокала / 9 бутылок</td><td class="price">11 500 ₽</td></tr>
+          <tr><td>120 бокалов / 13 бутылок</td><td class="price">13 500 ₽</td></tr>
+          <tr><td>165 бокалов / 20 бутылок</td><td class="price">15 500 ₽</td></tr>
         </table>
         <p class="tab-note">*В стоимость входит: стол, бокалы, сборка, сухой лёд, работа официанта. Шампанское предоставляется заказчиком.</p>
 
@@ -561,9 +595,9 @@ img{display:block}
         <div class="tab-subtitle">Фотоаппарат Instax Mini</div>
         <p class="tab-desc">Аренда фотоаппарата моментальной печати. Живые эмоции сразу в руках гостей!</p>
         <table class="tab-price">
-          <tr><td>Instax mini 11</td><td class="price">2 000 ₽</td></tr>
-          <tr><td>Instax mini 12</td><td class="price">2 500 ₽</td></tr>
-          <tr><td>Картриджи 20 кадров</td><td class="price">2 500 ₽</td></tr>
+          <tr><td>Instax mini 11</td><td class="price">2 500 ₽</td></tr>
+          <tr><td>Instax mini 12</td><td class="price">3 500 ₽</td></tr>
+          <tr><td>Картриджи 20 кадров</td><td class="price">2 700 ₽</td></tr>
         </table>
         <p class="tab-note">*Цена за аренду на одни сутки.</p>
       </div>
@@ -662,11 +696,15 @@ img{display:block}
 </div></section>
 
 <!-- ═══ FOOTER ═══ -->
-<footer class="footer"><div class="container">
+<footer class="footer" id="contact"><div class="container">
   <div class="footer-grid">
     <div><img src="images/LOGO.png" alt="МаркинPRO" style="height:40px;width:auto;border-radius:4px"><a href="tel:+79785557545" class="footer-phone">+7 (978) 555 75 45</a></div>
-    <a href="https://t.me/andreymarkin" class="btn btn-ghost"><svg width="18" height="18" fill="currentColor"><use href="#tg"/></svg> Telegram</a>
-    <div class="footer-copy">© 2026 Андрей Маркин.<br>Режиссура событий премиум-класса.</div>
+    <div class="footer-social">
+      <a href="https://t.me/andreymarkin" class="btn btn-ghost" aria-label="Telegram"><svg width="18" height="18" fill="currentColor"><use href="#tg"/></svg> Написать в Telegram</a>
+      <a href="https://vk.com/crimea.event.andrey.markin" class="btn btn-ghost" aria-label="VK"><svg width="18" height="18" fill="currentColor"><use href="#vk"/></svg></a>
+      <a href="https://youtube.com/@markinpro?si=wI3i_mepPok27yoJ" class="btn btn-ghost" aria-label="YouTube"><svg width="18" height="18" fill="currentColor"><use href="#yt"/></svg></a>
+    </div>
+    <div class="footer-copy">© 2026 Андрей Маркин. Все права защищены.</div>
   </div>
 </div></footer>
 
@@ -699,8 +737,16 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
     document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById('panel-'+btn.dataset.tab).classList.add('active');
+    document.getElementById('tabsSelect').value=btn.dataset.tab;
     window.scrollTo({top:document.getElementById('tabsBar').offsetTop-72,behavior:'smooth'});
   });
+});
+document.getElementById('tabsSelect').addEventListener('change',function(){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelector('.tab-btn[data-tab="'+this.value+'"]').classList.add('active');
+  document.getElementById('panel-'+this.value).classList.add('active');
+  window.scrollTo({top:document.getElementById('tabsBar').offsetTop-72,behavior:'smooth'});
 });
 
 // Gallery Lightbox

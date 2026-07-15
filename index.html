@@ -64,29 +64,29 @@ img{display:block}
 .nav-cta svg{width:18px;height:18px;fill:var(--gold)}
 
 /* ═══ HERO ═══ */
-.hero{position:relative;height:100vh;min-height:700px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero{position:relative;height:100vh;min-height:700px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 20%;transform:scale(1.1);transition:transform 8s var(--ease)}
 .hero.loaded .hero-bg img{transform:scale(1)}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,13,0.92) 0%,rgba(11,11,13,0.75) 28%,rgba(11,11,13,0.4) 55%,rgba(11,11,13,0.1) 78%,transparent 100%)}
 .hero-overlay::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,13,0.4) 0%,transparent 25%,transparent 65%,var(--bg) 100%)}
-.hero-content{position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:0 48px;padding-bottom:140px;width:100%}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid var(--gold-dim);border-radius:100px;font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:32px;backdrop-filter:blur(8px);background:rgba(11,11,13,0.3)}
-.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+.hero-content{position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:0 48px;padding-bottom:60px;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border:1px solid var(--gold-dim);border-radius:100px;font-size:13px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:52px;backdrop-filter:blur(8px);background:rgba(11,11,13,0.3)}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.hero h1{font-size:clamp(32px,5.5vw,72px);line-height:1.02;max-width:720px;margin-bottom:28px;font-weight:700}
+.hero h1{font-size:clamp(38px,6.5vw,86px);line-height:1.02;max-width:860px;margin-bottom:48px;font-weight:700}
 .hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
 .hero-desc{font-size:17px;color:var(--text-dim);max-width:500px;line-height:1.9;margin-bottom:48px}
-.hero-buttons{display:flex;gap:16px;flex-wrap:wrap;position:relative;z-index:2;padding:0 48px 48px;max-width:1320px}
+.hero-buttons{display:flex;gap:16px;flex-wrap:wrap;position:relative;z-index:2;margin-top:64px}
 .hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-muted);font-size:10px;letter-spacing:0.2em;text-transform:uppercase}
 .hero-scroll-line{width:1px;height:40px;background:linear-gradient(180deg,var(--gold),transparent);animation:scrollLine 2s infinite}
 @keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
 /* ═══ MARQUEE ═══ */
 .marquee{border-top:1px solid var(--gold-dim);border-bottom:1px solid var(--gold-dim);padding:18px 0;overflow:hidden;position:relative}
-.marquee-track{display:flex;width:max-content;will-change:transform}
-.marquee-item{font-family:'Oswald',sans-serif;font-size:14px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);white-space:nowrap;padding:0 32px;display:flex;align-items:center;gap:32px}
-.marquee-item::after{content:'✦';font-size:8px;opacity:0.4}
+.marquee-track{display:flex;width:max-content;will-change:transform;align-items:center;gap:0}
+.marquee-item{font-family:'Oswald',sans-serif;font-size:14px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);white-space:nowrap;padding:0 16px;display:flex;align-items:center;flex-shrink:0}
+.marquee-sep{font-size:8px;opacity:0.4;color:var(--gold);display:flex;align-items:center;flex-shrink:0;padding:0 8px}
 .marquee-mask{position:absolute;top:0;bottom:0;width:160px;z-index:2;pointer-events:none}
 .marquee-mask--l{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
 .marquee-mask--r{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
@@ -97,8 +97,12 @@ img{display:block}
 .container{max-width:1320px;margin:0 auto;padding:0 48px}
 .section-label{font-size:11px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
 .section-label::before{content:'';width:24px;height:1px;background:var(--gold)}
-.section-title{font-size:clamp(28px,4vw,48px);line-height:1.08;margin-bottom:16px;max-width:700px}
+.section-title{font-size:clamp(28px,4vw,48px);line-height:1.08;margin-bottom:48px;max-width:700px}
 .section-subtitle{font-size:16px;color:var(--text-dim);max-width:560px;line-height:1.8;margin-bottom:48px}
+.section p{font-size:16px;color:var(--text-dim);line-height:1.8;margin-bottom:16px}
+.section ul{list-style:none;padding:0;margin:16px 0}
+.section ul li{font-size:16px;color:var(--text-dim);line-height:1.8;padding:4px 0;padding-left:16px;position:relative}
+.section ul li::before{content:'•';position:absolute;left:0;color:var(--gold)}
 
 /* ═══ TEXT REVEAL ═══ */
 .reveal-text{overflow:hidden}
@@ -119,7 +123,7 @@ img{display:block}
 .about-stat-label{font-size:12px;color:var(--text-muted);margin-top:8px;letter-spacing:0.06em}
 
 /* ═══ SERVICES ═══ */
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .service-card{background:var(--bg-card);border:1px solid var(--gold-dim);border-radius:var(--radius);padding:44px 36px;display:flex;flex-direction:column;gap:20px;transition:all 0.5s var(--ease);position:relative;overflow:hidden}
 .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity 0.5s}
 .service-card:hover::before{opacity:1}
@@ -157,11 +161,11 @@ img{display:block}
 .portfolio-item img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
 
 /* ═══ LIGHT HERO ═══ */
-.light-hero{position:relative;height:120vh;display:flex;align-items:flex-end;margin:0 calc(-50vw + 50%)}
+.light-hero{position:relative;height:120vh;display:flex;align-items:center;margin:0 calc(-50vw + 50%)}
 .light-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .light-overlay{position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,rgba(11,11,13,0.7) 40%,rgba(11,11,13,0.2) 70%,transparent 100%);z-index:1}
 .light-overlay::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(11,11,13,0.6) 100%)}
-.light-content{position:relative;z-index:2;padding:60px;max-width:500px}
+.light-content{position:relative;z-index:2;padding:60px 60px 60px calc(50vw - 612px);max-width:700px}
 
 /* ═══ PRICING ═══ */
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -193,9 +197,9 @@ img{display:block}
 /* ═══ FOOTER ═══ */
 .footer{border-top:1px solid var(--gold-dim);padding:60px 0}
 .footer-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:40px;align-items:center}
-.footer-brand{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;letter-spacing:0.15em;color:var(--gold)}
 .footer-phone{font-size:15px;color:var(--text-dim);transition:color 0.3s;margin-top:8px;display:block}
 .footer-phone:hover{color:var(--gold)}
+.footer-social{display:flex;gap:12px;align-items:center}
 .footer-copy{font-size:12px;color:var(--text-muted);text-align:right;line-height:1.7}
 
 /* ═══ LIGHTBOX ═══ */
@@ -238,7 +242,7 @@ img{display:block}
   .hero-bg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(0deg,#0B0B0D 5%,transparent 40%);z-index:1}
   .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:right center}
   .hero-overlay{display:none}
-  .hero-buttons{order:3;padding:0 24px 48px}
+  .hero-buttons{order:3;margin-top:32px}
   .hero h1{font-size:28px}
   .hero h1 span:first-child{font-size:104px!important}
   .hero-scroll{display:none}
@@ -250,7 +254,9 @@ img{display:block}
   .portfolio-item{flex:0 0 260px;height:360px}
   .portfolio-gallery{padding:20px 20px 40px;gap:14px}
   .footer-grid{grid-template-columns:1fr;text-align:center}
+  .footer-grid>div:first-child{display:flex;flex-direction:column;align-items:center}
   .footer-copy{text-align:center}
+  .footer-social{justify-content:center}
   .about-stats{gap:32px}
   .section-title{font-size:28px}
   .hero-badge{font-size:10px;padding:6px 12px}
@@ -270,7 +276,7 @@ img{display:block}
 <div class="cursor-dot" id="cursorDot"></div>
 
 <!-- SVG -->
-<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs><symbol id="tg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></symbol></defs></svg>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs><symbol id="tg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></symbol><symbol id="yt" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.546 12 3.546 12 3.546s-7.505 0-9.377.504A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.504 9.376.504 9.376.504s7.505 0 9.377-.504a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></symbol><symbol id="vk" viewBox="0 0 24 24"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.391 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.678.864 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.204.17-.407.44-.407h2.744c.373 0 .508.203.508.644v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.15-3.574 2.15-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.644-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.78 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></symbol></defs></svg>
 
 <!-- ═══ NAV ═══ -->
 <header class="nav" id="nav">
@@ -314,12 +320,12 @@ img{display:block}
   </div>
   <div class="hero-content">
     <div class="hero-badge"><span class="hero-badge-dot"></span> Ведущий | Конферансье | Шоумен</div>
-    <h1><span style="font-family:'Avalon',cursive;font-weight:400;text-transform:none;letter-spacing:0.02em;font-size:1.4em;display:block">Андрей Маркин</span><span style="font-size:0.32em;letter-spacing:0.08em;color:var(--text-dim);font-weight:400;display:block;margin-top:12px;white-space:nowrap">Ведущий на свадьбу, корпоратив и премиум события</span></h1>
-    <p class="hero-desc">Профессиональная режиссура, интеллигентный юмор и технологичный продакшн мероприятий под ключ. 600+ событий для 50 000 гостей по всему Крыму и России.</p>
-  </div>
-  <div class="hero-buttons">
-    <a href="#contact" class="btn btn-gold">Обсудить ваше событие</a>
-    <a href="https://t.me/andreymarkin" class="btn btn-ghost"><svg width="16" height="16" fill="currentColor"><use href="#tg"/></svg> Telegram</a>
+    <h1><span style="font-family:'Avalon',cursive;font-weight:400;text-transform:none;letter-spacing:0.02em;font-size:1.4em;display:block">Андрей Маркин</span><span style="font-size:0.32em;letter-spacing:0.08em;color:var(--text-dim);font-weight:400;display:block;margin-top:12px;white-space:nowrap">События, которые хочется повторить.</span></h1>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn btn-gold"><svg width="16" height="16" fill="currentColor"><use href="#tg"/></svg> Обсудить ваше событие</a>
+      <a href="https://youtube.com/@markinpro?si=wI3i_mepPok27yoJ" class="btn btn-ghost"><svg width="16" height="16" fill="currentColor"><use href="#yt"/></svg> YouTube</a>
+      <a href="https://vk.com/crimea.event.andrey.markin" class="btn btn-ghost" aria-label="VK"><svg width="16" height="16" fill="currentColor"><use href="#vk"/></svg></a>
+    </div>
   </div>
   <div class="hero-scroll">
     <span>Scroll</span>
@@ -332,10 +338,10 @@ img{display:block}
   <div class="marquee-mask marquee-mask--l"></div>
   <div class="marquee-mask marquee-mask--r"></div>
   <div class="marquee-track" id="marqueeTrack">
-    <div class="marquee-item">Свадьбы</div><div class="marquee-item">Юбилеи</div><div class="marquee-item">Корпоративы</div><div class="marquee-item">Дни рождения</div><div class="marquee-item">Премиум события</div><div class="marquee-item">Режиссура</div><div class="marquee-item">Живой вокал</div>
-    <div class="marquee-item">Свадьбы</div><div class="marquee-item">Юбилеи</div><div class="marquee-item">Корпоративы</div><div class="marquee-item">Дни рождения</div><div class="marquee-item">Премиум события</div><div class="marquee-item">Режиссура</div><div class="marquee-item">Живой вокал</div>
-    <div class="marquee-item">Свадьбы</div><div class="marquee-item">Юбилеи</div><div class="marquee-item">Корпоративы</div><div class="marquee-item">Дни рождения</div><div class="marquee-item">Премиум события</div><div class="marquee-item">Режиссура</div><div class="marquee-item">Живой вокал</div>
-    <div class="marquee-item">Свадьбы</div><div class="marquee-item">Юбилеи</div><div class="marquee-item">Корпоративы</div><div class="marquee-item">Дни рождения</div><div class="marquee-item">Премиум события</div><div class="marquee-item">Режиссура</div><div class="marquee-item">Живой вокал</div>
+    <div class="marquee-item">Свадьбы</div><span class="marquee-sep">✦</span><div class="marquee-item">Юбилеи</div><span class="marquee-sep">✦</span><div class="marquee-item">Корпоративы</div><span class="marquee-sep">✦</span><div class="marquee-item">Дни рождения</div><span class="marquee-sep">✦</span><div class="marquee-item">Премиум события</div><span class="marquee-sep">✦</span><div class="marquee-item">Режиссура</div><span class="marquee-sep">✦</span><div class="marquee-item">Живой вокал</div><span class="marquee-sep">✦</span><div class="marquee-item">Импровизатор</div><span class="marquee-sep">✦</span><div class="marquee-item">Конферансье</div><span class="marquee-sep">✦</span><div class="marquee-item">Церемониймейстер</div><span class="marquee-sep">✦</span><div class="marquee-item">Креативный подход</div><span class="marquee-sep">✦</span><div class="marquee-item">Индивидуальный сценарий</div><span class="marquee-sep">✦</span><div class="marquee-item">Душевное ведение</div><span class="marquee-sep">✦</span>
+    <div class="marquee-item">Свадьбы</div><span class="marquee-sep">✦</span><div class="marquee-item">Юбилеи</div><span class="marquee-sep">✦</span><div class="marquee-item">Корпоративы</div><span class="marquee-sep">✦</span><div class="marquee-item">Дни рождения</div><span class="marquee-sep">✦</span><div class="marquee-item">Премиум события</div><span class="marquee-sep">✦</span><div class="marquee-item">Режиссура</div><span class="marquee-sep">✦</span><div class="marquee-item">Живой вокал</div><span class="marquee-sep">✦</span><div class="marquee-item">Импровизатор</div><span class="marquee-sep">✦</span><div class="marquee-item">Конферансье</div><span class="marquee-sep">✦</span><div class="marquee-item">Церемониймейстер</div><span class="marquee-sep">✦</span><div class="marquee-item">Креативный подход</div><span class="marquee-sep">✦</span><div class="marquee-item">Индивидуальный сценарий</div><span class="marquee-sep">✦</span><div class="marquee-item">Душевное ведение</div><span class="marquee-sep">✦</span>
+    <div class="marquee-item">Свадьбы</div><span class="marquee-sep">✦</span><div class="marquee-item">Юбилеи</div><span class="marquee-sep">✦</span><div class="marquee-item">Корпоративы</div><span class="marquee-sep">✦</span><div class="marquee-item">Дни рождения</div><span class="marquee-sep">✦</span><div class="marquee-item">Премиум события</div><span class="marquee-sep">✦</span><div class="marquee-item">Режиссура</div><span class="marquee-sep">✦</span><div class="marquee-item">Живой вокал</div><span class="marquee-sep">✦</span><div class="marquee-item">Импровизатор</div><span class="marquee-sep">✦</span><div class="marquee-item">Конферансье</div><span class="marquee-sep">✦</span><div class="marquee-item">Церемониймейстер</div><span class="marquee-sep">✦</span><div class="marquee-item">Креативный подход</div><span class="marquee-sep">✦</span><div class="marquee-item">Индивидуальный сценарий</div><span class="marquee-sep">✦</span><div class="marquee-item">Душевное ведение</div><span class="marquee-sep">✦</span>
+    <div class="marquee-item">Свадьбы</div><span class="marquee-sep">✦</span><div class="marquee-item">Юбилеи</div><span class="marquee-sep">✦</span><div class="marquee-item">Корпоративы</div><span class="marquee-sep">✦</span><div class="marquee-item">Дни рождения</div><span class="marquee-sep">✦</span><div class="marquee-item">Премиум события</div><span class="marquee-sep">✦</span><div class="marquee-item">Режиссура</div><span class="marquee-sep">✦</span><div class="marquee-item">Живой вокал</div><span class="marquee-sep">✦</span><div class="marquee-item">Импровизатор</div><span class="marquee-sep">✦</span><div class="marquee-item">Конферансье</div><span class="marquee-sep">✦</span><div class="marquee-item">Церемониймейстер</div><span class="marquee-sep">✦</span><div class="marquee-item">Креативный подход</div><span class="marquee-sep">✦</span><div class="marquee-item">Индивидуальный сценарий</div><span class="marquee-sep">✦</span><div class="marquee-item">Душевное ведение</div><span class="marquee-sep">✦</span>
   </div>
 </div>
 
@@ -344,17 +350,25 @@ img{display:block}
   <div class="about-grid">
     <div class="about-image" data-anim="fade-right">
       <img src="images/aboutimage.png" alt="Андрей Маркин — портрет">
-      <div class="about-image-badge">7+ лет опыта</div>
+      <div class="about-image-badge">8+ лет опыта</div>
     </div>
     <div class="about-text" data-anim="fade-left">
       <div class="section-label">Обо мне</div>
-      <h2 class="section-title">Ведущий и вокалист для событий, которые хочется вспоминать</h2>
-      <p>За 7 лет я провёл более <strong>600 мероприятий</strong> для <strong>50 000 гостей</strong> по всему Крыму и России. Мне доверяют как частные торжества, так и масштабные проекты: среди моих клиентов <strong>Правительство Севастополя</strong>, банк <strong>ВТБ</strong> и театр им. <strong>Елизарова</strong>.</p>
-      <p>Мой стиль — это живой вокал, тонкая импровизация и деликатная интеллигентность. Я не просто развлекаю аудиторию, а создаю атмосферу, в которой каждому гостю легко, уютно и интересно.</p>
+      <h2 class="section-title">Ведущий, вокалист и руководитель команды «МаркинPRO».</h2>
+      <p>Я тот человек, который будет с вами на одной волне и даже больше!</p>
+      <p>За 8 лет я провёл более <strong>600 мероприятий</strong> для <strong>50 000+ гостей</strong> по всему Крыму и России. Мне доверяют как частные торжества, так и масштабные проекты: среди моих клиентов <strong>Правительство Севастополя</strong>, банк <strong>ВТБ</strong>, курорт <strong>Мрия</strong> и другие.</p>
+      <p>Мой стиль — тонкая импровизация и деликатная интеллигентность, живой вокал. Я не просто развлекаю аудиторию, а создаю атмосферу, в которой каждому гостю легко, уютно и интересно.</p>
+      <p>Сегодня «МаркинPRO» — это команда специалистов, которая предоставляем широкий комплекс услуг для мероприятий.</p>
+      <ul>
+        <li><strong>Проведение</strong> — работа профессионального ведущего и диджея</li>
+        <li><strong>Техническое обеспечение</strong> — аренда звукового, светового и мультимедийного оборудования, техническое сопровождение.</li>
+        <li><strong>Свадебные спецэффекты</strong> — тяжёлый дым, холодные фонтаны, дымные пузыри и многое другое для ярких моментов.</li>
+        <li><strong>Организация под ключ</strong></li>
+      </ul>
       <p><em>Выдыхайте. Если вы читаете этот текст, значит, ваш праздник уже в надёжных руках.</em></p>
       <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:8px">
-        <a href="#" class="btn btn-gold">Смотреть презентацию</a>
-        <a href="#contact" class="btn btn-ghost">Написать</a>
+        <a href="#" class="btn btn-gold">Шоурил</a>
+        <a href="#contact" class="btn btn-ghost">Портфолио</a>
       </div>
       <div class="about-stats">
         <div><div class="about-stat-num" data-count="600">0</div><div class="about-stat-label">Мероприятий</div></div>
@@ -372,17 +386,22 @@ img{display:block}
   <div class="services-grid">
     <div class="service-card" data-anim="fade-up" data-delay="0">
       <h3>Свадьбы</h3>
-      <p>Элегантный европейский формат без пошлых конкурсов и навязчивых традиций. Тонкий психологизм, индивидуальный сценарий, построенный на истории пары, и безупречный такт.</p>
+      <p>Индивидуальный сценарий, созданный именно для вашей пары, с вниманием к каждому гостю, интеллигентным ведением и лёгкой атмосферой без навязчивых конкурсов.</p>
       <a href="https://t.me/andreymarkin" class="btn btn-ghost btn-sm"><svg width="14" height="14" fill="currentColor"><use href="#tg"/></svg> Обсудить</a>
     </div>
     <div class="service-card" data-anim="fade-up" data-delay="1">
       <h3>Корпоративы</h3>
-      <p>Масштабные концептуальные события для брендов и компаний. Интеграция ценностей компании в развлекательный контент, современные цифровые интерактивы.</p>
+      <p>Концептуальные корпоративные события для компаний и брендов. Интегрируем ценности компании в программу дополняя её современными цифровыми интерактивами и шоу.</p>
       <a href="https://t.me/andreymarkin" class="btn btn-ghost btn-sm"><svg width="14" height="14" fill="currentColor"><use href="#tg"/></svg> Обсудить</a>
     </div>
     <div class="service-card" data-anim="fade-up" data-delay="2">
       <h3>Частные события</h3>
-      <p>Камерные юбилеи, дни рождения и закрытые вечеринки. Формат intelligent luxury: атмосфера закрытого клуба, где каждый гость окружён вниманием.</p>
+      <p>Ваш личный праздник, будь то день рождения, юбилей, выпускной, встреча выпускников, гендер-пати, вечеринка, гриль-пати, арт-вечеринка, семейный ужин, квизы и квесты или свидание-сюрприз - в руках надёжной команды.</p>
+      <a href="https://t.me/andreymarkin" class="btn btn-ghost btn-sm"><svg width="14" height="14" fill="currentColor"><use href="#tg"/></svg> Обсудить</a>
+    </div>
+    <div class="service-card" data-anim="fade-up" data-delay="3">
+      <h3>Официальные мероприятия</h3>
+      <p>Работа с администрациями и ведомствами требует точности в каждой детали. Мы соблюдаем регламент, контролируем тайминг, учитываем особенности официального протокола, чтобы мероприятие прошло безупречно, на самом высоком уровне.</p>
       <a href="https://t.me/andreymarkin" class="btn btn-ghost btn-sm"><svg width="14" height="14" fill="currentColor"><use href="#tg"/></svg> Обсудить</a>
     </div>
   </div>
@@ -394,9 +413,9 @@ img{display:block}
     <img src="images/light.jpg" alt="Световое оформление мероприятия">
     <div class="light-overlay"></div>
     <div class="light-content">
-      <div class="section-label">Свет & Звук</div>
+      <div class="section-label">Свет & Звук | Медиа-оборудование</div>
       <h2 class="section-title">Световое оформление премиум-класса</h2>
-      <p class="section-subtitle">Половина эмоций от шоу и идеальная картинка на фото и видео зависят от правильного света. У нас собственный комплект управляемого оборудования и светоинженер.</p>
+      <p class="section-subtitle">Идеальная картинка на фото и видео зависят от правильного света. У нас собственный комплект управляемого оборудования и светохудожник.</p>
       <a href="light.html" class="btn btn-ghost">Подробнее про свет</a>
     </div>
   </div>
@@ -426,22 +445,22 @@ img{display:block}
 <!-- ═══ USP ═══ -->
 <section class="section section-border usp-section"><div class="container">
   <div class="section-label" data-anim="fade-up">Преимущества</div>
-  <h2 class="section-title" data-anim="fade-up">Современный подход к созданию событий</h2>
+  <h2 class="section-title" data-anim="fade-up">Комплексный подход к созданию событий</h2>
   <div class="usp-grid" data-anim="fade-up">
     <div class="usp-item">
       <div class="usp-num">01</div>
-      <h3>Контроль атмосферы</h3>
-      <p>Мы объединяем программу, свет, звук и спецэффекты в один поминутный сценарий. На площадке нет места случайным паузам, заминкам или устаревшим конкурсам.</p>
+      <h3>СПЛОЧЕННАЯ КОМАНДА</h3>
+      <p>Профессионалы, которые работают как единая система, а не набор подрядчиков. На выходе вы получаете слаженный продакшн.</p>
     </div>
     <div class="usp-item">
       <div class="usp-num">02</div>
       <h3>Авторские интерактивы</h3>
-      <p>Интеллектуальные шоу вместо банальных развлечений. Собственная беспроводная система с кнопками «Брейндринг».</p>
+      <p>Эксклюзивные шоу программы вместо банальных развлечений. Новейшие технологии для интерактивов.</p>
     </div>
     <div class="usp-item">
       <div class="usp-num">03</div>
-      <h3>Безупречный такт</h3>
-      <p>Тонкое чувство юмора, знание психологии гостей и умение управлять настроением зала.</p>
+      <h3>ПОМОЩЬ В ОРГАНИЗАЦИИ</h3>
+      <p>Создание события с нуля, частичная организация, сопровождение на всех этапах мероприятия.</p>
     </div>
   </div>
   <div style="margin-top:48px" data-anim="fade-up"><a href="#contact" class="btn btn-gold">Написать нам</a></div>
@@ -485,18 +504,18 @@ img{display:block}
   <div class="pricing-grid">
     <div class="pricing-card" data-anim="fade-up" data-delay="0">
       <h3>Свадьба (церемония + банкет)</h3>
-      <p>Пошаговая разработка сценария: история любви, музыкальное оформление, услуги ведущего и диджея.</p>
+      <p>Пошаговая разработка сценария церемонии и банкета: тайминг, написание вашей истории любви, подбор музыкального оформления, выбор наполнения церемонии, широкий выбор форматов проведения свадебных традиций и интерактивов, услуги ведущего и ди-джея.</p>
       <ul class="pricing-list"><li>Количество встреч ∞</li><li>Подбор артистов и сюрпризов</li><li>Игра «правда или ложь»</li><li>Интерактивы с ИИ</li><li>Чат для подготовки</li><li>Камера Instax mini 12</li><li>Договор</li><li>До 7 часов</li></ul>
       <div class="pricing-price">95 000 ₽</div>
-      <div class="pricing-note">Ведущий и диджей. Оборудование — индивидуально.</div>
+      <div class="pricing-note">*Стоимость проката звукового, светового и мультимедийного оборудования определяется индивидуально в зависимости от комплектации и условий мероприятия.</div>
       <a href="#contact" class="btn btn-gold" style="margin-top:auto">Написать нам</a>
     </div>
     <div class="pricing-card" data-anim="fade-up" data-delay="1">
       <h3>Свадебный банкет</h3>
-      <p>Сценарий, уникальная программа интерактивов, услуги ведущего и диджея.</p>
-      <ul class="pricing-list"><li>Количество встреч ∞</li><li>Подбор артистов и сюрпризов</li><li>Игра «правда или ложь»</li><li>Интерактивы с ИИ</li><li>Чат для подготовки</li><li>Камера Instax mini 12</li><li>Караоке система</li><li>До 6 часов</li></ul>
+      <p>Пошаговая разработка сценария банкета: широкий выбор форматов проведения свадебных традиций и интерактивов, услуги ведущего и ди-джея.</p>
+      <ul class="pricing-list"><li>Количество встреч ∞</li><li>Подбор артистов и сюрпризов</li><li>Игра «правда или ложь»</li><li>Интерактивы с ИИ</li><li>Чат для подготовки</li><li>Камера Instax mini 12</li><li>До 6 часов</li></ul>
       <div class="pricing-price">85 000 ₽</div>
-      <div class="pricing-note">Ведущий и диджей. Оборудование — индивидуально.</div>
+      <div class="pricing-note">*Стоимость проката звукового, светового и мультимедийного оборудования определяется индивидуально в зависимости от комплектации и условий мероприятия.</div>
       <a href="#contact" class="btn btn-gold" style="margin-top:auto">Написать нам</a>
     </div>
     <div class="pricing-card" data-anim="fade-up" data-delay="2">
@@ -504,7 +523,7 @@ img{display:block}
       <p>Стильная атмосфера, живое общение и современное проведение.</p>
       <ul class="pricing-list"><li>Ведущий и диджей</li><li>Подбор артистов</li><li>Интерактивы с ИИ</li><li>Чат для подготовки</li><li>Камера Instax mini 12</li><li>Караоке система</li><li>Договор</li></ul>
       <div class="pricing-price">95 000 ₽</div>
-      <div class="pricing-note">Оборудование — индивидуально.</div>
+      <div class="pricing-note">Стоимость проведения любых мероприятий, кроме свадеб, рассчитывается индивидуально. Итоговая цена зависит от формата события, города проведения, продолжительности программы, выбранных услуг и технического оснащения площадки.</div>
       <a href="#contact" class="btn btn-gold" style="margin-top:auto">Написать нам</a>
     </div>
   </div>
@@ -529,9 +548,13 @@ img{display:block}
 <!-- ═══ FOOTER ═══ -->
 <footer class="footer" id="contact"><div class="container">
   <div class="footer-grid">
-    <div><img src="images/LOGO.png" alt="МаркинPRO" style="height:40px;width:auto;border-radius:4px"><a href="tel:+79785557545" class="footer-phone">+7 (978) 555 75 45</a></div>
-    <a href="https://t.me/andreymarkin" class="btn btn-ghost" aria-label="Telegram"><svg width="18" height="18" fill="currentColor"><use href="#tg"/></svg> Написать в Telegram</a>
-    <div class="footer-copy">© 2026 Андрей Маркин. Все права защищены.<br>Режиссура событий и безопасные спецэффекты премиум-класса.</div>
+    <div><img src="images/LOGO.png" alt="МаркинPRO" style="height:40px;width:auto;border-radius:4px"><a href="tel:+79780222505" class="footer-phone">+7 (978) 022-25-05</a></div>
+    <div class="footer-social">
+      <a href="https://t.me/andreymarkin" class="btn btn-ghost" aria-label="Telegram"><svg width="18" height="18" fill="currentColor"><use href="#tg"/></svg> Написать в Telegram</a>
+      <a href="https://vk.com/crimea.event.andrey.markin" class="btn btn-ghost" aria-label="VK"><svg width="18" height="18" fill="currentColor"><use href="#vk"/></svg></a>
+      <a href="https://youtube.com/@markinpro?si=wI3i_mepPok27yoJ" class="btn btn-ghost" aria-label="YouTube"><svg width="18" height="18" fill="currentColor"><use href="#yt"/></svg></a>
+    </div>
+    <div class="footer-copy">© 2026 Андрей Маркин. Все права защищены.</div>
   </div>
 </div></footer>
 

@@ -79,8 +79,8 @@ img{display:block}
 /* ═══ MARQUEE ═══ */
 .marquee{border-top:1px solid var(--gold-dim);border-bottom:1px solid var(--gold-dim);padding:18px 0;overflow:hidden;position:relative}
 .marquee-track{display:flex;width:max-content;will-change:transform}
-.marquee-item{font-family:'Oswald',sans-serif;font-size:14px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);white-space:nowrap;padding:0 32px;display:flex;align-items:center;gap:32px}
-.marquee-item::after{content:'✦';font-size:8px;opacity:0.4}
+.marquee-item{font-family:'Oswald',sans-serif;font-size:14px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);white-space:nowrap;padding:0 16px;display:flex;align-items:center;flex-shrink:0}
+.marquee-sep{font-size:8px;opacity:0.4;color:var(--gold);display:flex;align-items:center;flex-shrink:0;padding:0 8px}
 .marquee-mask{position:absolute;top:0;bottom:0;width:160px;z-index:2;pointer-events:none}
 .marquee-mask--l{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
 .marquee-mask--r{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
@@ -162,7 +162,7 @@ img{display:block}
 .retro-section .section-title{max-width:600px}
 
 /* ═══ PARALLAX CTA ═══ */
-.parallax-cta{position:relative;height:75vh;min-height:540px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+.parallax-cta{position:relative;height:110vh;min-height:900px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
 .parallax-cta video{position:absolute;inset:0;width:100%;height:120%;object-fit:cover;z-index:0}
 .parallax-cta-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,13,0.6) 0%,rgba(11,11,13,0.4) 50%,rgba(11,11,13,0.7) 100%);z-index:1}
 .parallax-cta-content{position:relative;z-index:2;padding:40px 20px}
@@ -172,9 +172,9 @@ img{display:block}
 /* ═══ FOOTER ═══ */
 .footer{border-top:1px solid var(--gold-dim);padding:60px 0}
 .footer-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:40px;align-items:center}
-.footer-brand{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;letter-spacing:0.15em;color:var(--gold)}
 .footer-phone{font-size:15px;color:var(--text-dim);transition:color 0.3s;margin-top:8px;display:block}
 .footer-phone:hover{color:var(--gold)}
+.footer-social{display:flex;gap:12px;align-items:center}
 .footer-copy{font-size:12px;color:var(--text-muted);text-align:right;line-height:1.7}
 
 /* ═══ BURGER ═══ */
@@ -223,7 +223,9 @@ img{display:block}
   .packages-grid{grid-template-columns:1fr;gap:12px}
   .gallery-grid{grid-template-columns:1fr 1fr}
   .footer-grid{grid-template-columns:1fr;text-align:center}
+  .footer-grid>div:first-child{display:flex;flex-direction:column;align-items:center}
   .footer-copy{text-align:center}
+  .footer-social{justify-content:center}
   .section-title{font-size:28px}
 }
 </style>
@@ -241,7 +243,7 @@ img{display:block}
 <div class="cursor-dot" id="cursorDot"></div>
 
 <!-- SVG -->
-<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs><symbol id="tg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></symbol></defs></svg>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs><symbol id="tg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></symbol><symbol id="yt" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.546 12 3.546 12 3.546s-7.505 0-9.377.504A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.504 9.376.504 9.376.504s7.505 0 9.377-.504a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></symbol><symbol id="vk" viewBox="0 0 24 24"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.391 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.678.864 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.204.17-.407.44-.407h2.744c.373 0 .508.203.508.644v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.15-3.574 2.15-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.644-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.78 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></symbol></defs></svg>
 
 <!-- ═══ NAV ═══ -->
 <header class="nav" id="nav">
@@ -303,16 +305,16 @@ img{display:block}
   <div class="marquee-mask marquee-mask--l"></div>
   <div class="marquee-mask marquee-mask--r"></div>
   <div class="marquee-track" id="marqueeTrack">
-    <div class="marquee-item">Световое оборудование</div><div class="marquee-item">Звуковое оборудование</div><div class="marquee-item">Медиа-системы</div><div class="marquee-item">DMX-управление</div><div class="marquee-item">Светоинженер</div><div class="marquee-item">Аренда оборудования</div>
-    <div class="marquee-item">Световое оборудование</div><div class="marquee-item">Звуковое оборудование</div><div class="marquee-item">Медиа-системы</div><div class="marquee-item">DMX-управление</div><div class="marquee-item">Светоинженер</div><div class="marquee-item">Аренда оборудования</div>
-    <div class="marquee-item">Световое оборудование</div><div class="marquee-item">Звуковое оборудование</div><div class="marquee-item">Медиа-системы</div><div class="marquee-item">DMX-управление</div><div class="marquee-item">Светоинженер</div><div class="marquee-item">Аренда оборудования</div>
+    <div class="marquee-item">Световое оборудование</div><span class="marquee-sep">✦</span><div class="marquee-item">Звуковые системы</div><span class="marquee-sep">✦</span><div class="marquee-item">Мультимедийные решения</div><span class="marquee-sep">✦</span><div class="marquee-item">Led-экраны</div><span class="marquee-sep">✦</span><div class="marquee-item">Доставка по Крыму</div><span class="marquee-sep">✦</span>
+    <div class="marquee-item">Световое оборудование</div><span class="marquee-sep">✦</span><div class="marquee-item">Звуковые системы</div><span class="marquee-sep">✦</span><div class="marquee-item">Мультимедийные решения</div><span class="marquee-sep">✦</span><div class="marquee-item">Led-экраны</div><span class="marquee-sep">✦</span><div class="marquee-item">Доставка по Крыму</div><span class="marquee-sep">✦</span>
+    <div class="marquee-item">Световое оборудование</div><span class="marquee-sep">✦</span><div class="marquee-item">Звуковые системы</div><span class="marquee-sep">✦</span><div class="marquee-item">Мультимедийные решения</div><span class="marquee-sep">✦</span><div class="marquee-item">Led-экраны</div><span class="marquee-sep">✦</span><div class="marquee-item">Доставка по Крыму</div><span class="marquee-sep">✦</span>
   </div>
 </div>
 
 <!-- ═══ MANIFEST ═══ -->
 <section class="manifest section-border" data-anim="fade-up">
   <div class="container">
-    <blockquote>Свет — это язык, на котором говорит праздник. Доверьте эту речь профессионалам, и ваше мероприятие заиграет совершенно новыми красками.</blockquote>
+    <blockquote>Свет — это картинка вашего праздника. Мы делаем так, чтобы она выглядела дорого, стильно и эффектно.</blockquote>
   </div>
 </section>
 
@@ -344,11 +346,9 @@ img{display:block}
       <h2 class="section-title" data-anim="fade-up">Безупречность в каждой детали</h2>
       <ul class="advantages-list" data-anim="fade-up">
         <li>Современное профессиональное оборудование</li>
-        <li>Безопасная и надёжная установка</li>
         <li>Опыт работы на мероприятиях любого масштаба</li>
         <li>Индивидуальные световые решения</li>
         <li>Полный технический сервис под ключ</li>
-        <li>Управление и настройка света в реальном времени</li>
       </ul>
       <p class="advantages-subtitle" data-anim="fade-up">Заказывая профессиональное световое оборудование, вы получаете качественный свет, который подчёркивает стиль события и создаёт вау-эффект для гостей.</p>
       <a href="https://t.me/andreymarkin" class="btn btn-gold" data-anim="fade-up">Обсудить</a>
@@ -358,9 +358,12 @@ img{display:block}
 
 <!-- ═══ LIGHT PACKAGES ═══ -->
 <section class="section section-border" id="light-packages"><div class="container">
-  <div class="packages-header">
-    <div class="section-label" data-anim="fade-up">Комплекты света</div>
-    <h2 class="section-title" data-anim="fade-up">Готовые комплекты светового оформления</h2>
+  <div class="packages-header" style="display:flex;justify-content:space-between;align-items:flex-end">
+    <div>
+      <div class="section-label" data-anim="fade-up">Комплекты света</div>
+      <h2 class="section-title" data-anim="fade-up">Готовые комплекты светового оформления</h2>
+    </div>
+    <a href="Звук и свет 2026 .pdf" target="_blank" class="btn btn-ghost btn-sm" data-anim="fade-up">Смотреть презентацию</a>
   </div>
   <div class="packages-grid">
 
@@ -488,8 +491,13 @@ img{display:block}
 
 <!-- ═══ RETRO PACKAGES ═══ -->
 <section class="section section-border retro-section" id="retro"><div class="container">
-  <div class="section-label" data-anim="fade-up">Ретро-свет</div>
-  <h2 class="section-title" data-anim="fade-up">Камерная эстетика: Ретро-направления</h2>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end">
+    <div>
+      <div class="section-label" data-anim="fade-up">Ретро-свет</div>
+      <h2 class="section-title" data-anim="fade-up">Камерная эстетика: Ретро-направления</h2>
+    </div>
+    <a href="Звук и свет 2026 .pdf" target="_blank" class="btn btn-ghost btn-sm" data-anim="fade-up">Смотреть презентацию</a>
+  </div>
   <div class="packages-grid" style="grid-template-columns:repeat(2,1fr)">
 
     <div class="package-card" data-anim="fade-up" data-delay="0">
@@ -546,8 +554,13 @@ img{display:block}
 
 <!-- ═══ SOUND PACKAGES ═══ -->
 <section class="section section-border" id="sound"><div class="container">
-  <div class="section-label" data-anim="fade-up">Звук & Медиа</div>
-  <h2 class="section-title" data-anim="fade-up">Профессиональные звуковые и медиа-комплекты</h2>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end">
+    <div>
+      <div class="section-label" data-anim="fade-up">Звук & Медиа</div>
+      <h2 class="section-title" data-anim="fade-up">Профессиональные звуковые и медиа-комплекты</h2>
+    </div>
+    <a href="Звук и свет 2026 .pdf" target="_blank" class="btn btn-ghost btn-sm" data-anim="fade-up">Смотреть презентацию</a>
+  </div>
   <div class="packages-grid">
 
     <div class="package-card" data-anim="fade-up" data-delay="0">
@@ -670,9 +683,13 @@ img{display:block}
 <!-- ═══ FOOTER ═══ -->
 <footer class="footer" id="contact"><div class="container">
   <div class="footer-grid">
-    <div><img src="images/LOGO.png" alt="МаркинPRO" style="height:40px;width:auto;border-radius:4px"><a href="tel:+79785557545" class="footer-phone">+7 (978) 555 75 45</a></div>
-    <a href="https://t.me/andreymarkin" class="btn btn-ghost" aria-label="Telegram"><svg width="18" height="18" fill="currentColor"><use href="#tg"/></svg> Написать в Telegram</a>
-    <div class="footer-copy">© 2026 Андрей Маркин. Все права защищены.<br>Профессиональный технический продакшн мероприятий.</div>
+    <div><img src="images/LOGO.png" alt="МаркинPRO" style="height:40px;width:auto;border-radius:4px"><a href="tel:+79780222505" class="footer-phone">+7 (978) 022-25-05</a></div>
+    <div class="footer-social">
+      <a href="https://t.me/andreymarkin" class="btn btn-ghost" aria-label="Telegram"><svg width="18" height="18" fill="currentColor"><use href="#tg"/></svg> Написать в Telegram</a>
+      <a href="https://vk.com/crimea.event.andrey.markin" class="btn btn-ghost" aria-label="VK"><svg width="18" height="18" fill="currentColor"><use href="#vk"/></svg></a>
+      <a href="https://youtube.com/@markinpro?si=wI3i_mepPok27yoJ" class="btn btn-ghost" aria-label="YouTube"><svg width="18" height="18" fill="currentColor"><use href="#yt"/></svg></a>
+    </div>
+    <div class="footer-copy">© 2026 Андрей Маркин. Все права защищены.</div>
   </div>
 </div></footer>
 
